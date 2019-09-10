@@ -1,0 +1,5 @@
+README.md
+readme.txt
+mystory/__pycache__
+wedding/__pycache__
+**/*.pyc
