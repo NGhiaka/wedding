@@ -16,6 +16,7 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 import datetime
 
+phone_regex = RegexValidator(regex=r'^[0-9]{8,11}$', message="Số điện thoại phải có định dạng 0xxxxxxxxxxx.")
 
 class About(models.Model):
     """docstring for Cosst"""
@@ -29,29 +30,24 @@ class About(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=500)
     ishusban = models.BooleanField(default=1)
+    code = models.CharField(max_length=10) #Linh: 1904 - Nghia: 0110 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def save(self):
         self.slug = slugify(self.name)
         super(About, self).save()
     class Meta:
-        verbose_name_plural = "Thông Tin"
+        verbose_name_plural = "Quản Lý Thông Tin CD-CR"
 
-class Code(models.Model):
-    """Mã code - 
-    """
-    code = models.CharField(max_length=10) #Linh: 1904 - Nghia: 0110 
-    isWho = models.OneToOneField(About, on_delete=models.CASCADE)  
-    class Meta:
-        verbose_name_plural = "Mã code"
-
-class Wedding_invitation(models.Model): #thiệp cưới
+class Wedding_Invitation(models.Model): #thiệp cưới
     #Thông tin thiệp cưới
-    #Họ tên cô dâu
-    time = models.DateField('date published')
+    #Họ tên CDCR
+    feast = models.CharField(max_length=100) #tên đám: Vu Quy - Tân Hôn
+    time_calendar = models.DateField('date published') #Ngày dương lịch
+    time_lunar = models.DateField('date published') #Ngày âm lịch
     location = models.CharField(max_length=500)
     code = models.OneToOneField(About, on_delete=models.CASCADE)
     class Meta:
-        verbose_name_plural = "Thiệp Cưới"
+        verbose_name_plural = "Quản Lý Thiệp Cưới"
 
 class Gallery(models.Model):
     """Bộ sưu tập
@@ -67,7 +63,7 @@ class Gallery(models.Model):
     def __str__(self):
         return '%s' % self.title
     class Meta:
-        verbose_name_plural = "Tên Album"
+        verbose_name_plural = "Quản Lý Album"
 
 class Image(models.Model):
     """"""
@@ -76,16 +72,18 @@ class Image(models.Model):
     gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE)
     decription = models.CharField(max_length=50000, blank = True)
     class Meta:
-        verbose_name_plural = "Hình Ảnh"
+        verbose_name_plural = "Quản Lý Hình Ảnh"
 
 class Story(models.Model):
     """
     Câu truyện tình yêu - Blog
     """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, blank = True)
     slug = models.SlugField(max_length=200)
     uploaded_at = models.DateTimeField(auto_now_add=True)   
     images = models.ImageField(upload_to = 'story/%Y/%m/%d')
+    content = models.CharField(max_length=5000, blank = True)
     def save(self):
         self.slug = slugify(self.title)
         super(Story, self).save()
@@ -96,9 +94,26 @@ class Story(models.Model):
 
 class Blessing(models.Model):
     """Lời chúc phúc
+    name: Họ tên
+    blessing: lời chúc
     """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank = True)
     blessing = models.CharField(max_length=1000, blank = True)
     class Meta:
         verbose_name_plural = "Lời Chúc"
+
+class Invitee(models.Model):
+    """Danh sách khách mời
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    guestof = models.ForeignKey(About, on_delete=models.CASCADE) #khách của CD hay CR
+    name = models.CharField(max_length=100) #Tên khách
+    phone = models.CharField(validators=[phone_regex], max_length=13, blank=True) # Số điện thoại
+    address = models.CharField(max_length=100) #Địa chỉ
+    ivitation = models.BooleanField(default=0) #đã phát thiệp hay chưa
+    adherence_wedding = models.BooleanField(default=0) #tham gia lễ cưới hay ko
+    money_wedding = models.CharField(max_length=10, default=0) #tiền mừng
+    class Meta:
+        verbose_name_plural = "Quản Lý Khách Mời"
 
