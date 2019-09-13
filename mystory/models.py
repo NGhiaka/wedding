@@ -26,12 +26,12 @@ class About(models.Model):
         #ma code: #Linh: 1904 - Nghia: 0110
     """
     def __str__(self): 
-        return self.name
-    name = models.CharField(max_length=200)
+        return 'Chú Rể' if self.ishusban else 'Cô Dâu'
+    name = models.CharField(max_length=200, verbose_name='Họ Tên')
     slug = models.SlugField(max_length=500)
-    ishusban = models.BooleanField(default=1)
-    code = models.CharField(max_length=10) #Linh: 1904 - Nghia: 0110 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ishusban = models.BooleanField(default=1, verbose_name='Là Chú Rể')
+    code = models.CharField(max_length=10, verbose_name='Mã code') #Linh: 1904 - Nghia: 0110 
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     def save(self):
         self.slug = slugify(self.name)
         super(About, self).save()
@@ -41,11 +41,15 @@ class About(models.Model):
 class Wedding_Invitation(models.Model): #thiệp cưới
     #Thông tin thiệp cưới
     #Họ tên CDCR
-    feast = models.CharField(max_length=100) #tên đám: Vu Quy - Tân Hôn
-    time_calendar = models.DateField('date published') #Ngày dương lịch
-    time_lunar = models.DateField('date published') #Ngày âm lịch
-    location = models.CharField(max_length=500)
-    code = models.OneToOneField(About, on_delete=models.CASCADE)
+    PARTY= (
+        ('Vu Quy', 'Vu Quy'),
+        ('Tân Hôn', 'Tân Hôn'),
+    )
+    feast = models.CharField(max_length=100, verbose_name='Lễ', choices=PARTY) #tên đám: Vu Quy - Tân Hôn
+    time_calendar = models.DateField('Ngày Dương Lịch') #Ngày dương lịch
+    time_lunar = models.DateField('Ngày Âm Lịch') #Ngày âm lịch
+    location = models.CharField(max_length=500, verbose_name='Địa điểm tổ chức:')
+    code = models.OneToOneField(About, on_delete=models.CASCADE, verbose_name='Tổ chức tại nhà')
     class Meta:
         verbose_name_plural = "Quản Lý Thiệp Cưới"
 
@@ -53,9 +57,9 @@ class Gallery(models.Model):
     """Bộ sưu tập
     
     """
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, verbose_name='Bộ sưu tập')
     slug = models.SlugField(max_length=500)
-    decription = models.CharField(max_length=200, blank = True)
+    decription = models.CharField(max_length=200, blank = True, verbose_name='Nội dung')
     uploaded_at = models.DateTimeField(auto_now_add=True)   
     def save(self):
         self.slug = slugify(self.title)
@@ -67,10 +71,10 @@ class Gallery(models.Model):
 
 class Image(models.Model):
     """"""
-    path_img = models.ImageField(blank = True, upload_to = 'gallery/%Y/%m/%d')
+    path_img = models.ImageField(blank = True, upload_to = 'gallery/%Y/%m/%d', verbose_name='Đường dẫn')
     uploaded_at = models.DateTimeField(auto_now_add=True)
-    gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE)
-    decription = models.CharField(max_length=50000, blank = True)
+    gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE, verbose_name='Bộ sưu tập')
+    decription = models.CharField(max_length=50000, blank = True, verbose_name='Ghi chú')
     class Meta:
         verbose_name_plural = "Quản Lý Hình Ảnh"
 
@@ -78,12 +82,12 @@ class Story(models.Model):
     """
     Câu truyện tình yêu - Blog
     """
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100, blank = True)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    title = models.CharField(max_length=100, blank = True, verbose_name='Tiêu đề')
     slug = models.SlugField(max_length=200)
     uploaded_at = models.DateTimeField(auto_now_add=True)   
-    images = models.ImageField(upload_to = 'story/%Y/%m/%d')
-    content = models.CharField(max_length=5000, blank = True)
+    images = models.ImageField(upload_to = 'story/%Y/%m/%d', verbose_name='Ảnh đại diện')
+    content = models.CharField(max_length=5000, blank = True, verbose_name='Nội dung')
     def save(self):
         self.slug = slugify(self.title)
         super(Story, self).save()
@@ -97,9 +101,9 @@ class Blessing(models.Model):
     name: Họ tên
     blessing: lời chúc
     """
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, blank = True)
-    blessing = models.CharField(max_length=1000, blank = True)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    name = models.CharField(max_length=100, blank = True, verbose_name='Tên khác mời')
+    blessing = models.CharField(max_length=1000, blank = True, verbose_name='Lời chúc')
     class Meta:
         verbose_name_plural = "Lời Chúc"
 
@@ -107,13 +111,13 @@ class Invitee(models.Model):
     """Danh sách khách mời
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    guestof = models.ForeignKey(About, on_delete=models.CASCADE) #khách của CD hay CR
-    name = models.CharField(max_length=100) #Tên khách
-    phone = models.CharField(validators=[phone_regex], max_length=13, blank=True) # Số điện thoại
-    address = models.CharField(max_length=100) #Địa chỉ
-    ivitation = models.BooleanField(default=0) #đã phát thiệp hay chưa
-    adherence_wedding = models.BooleanField(default=0) #tham gia lễ cưới hay ko
-    money_wedding = models.CharField(max_length=10, default=0) #tiền mừng
+    guestof = models.ForeignKey(About, on_delete=models.CASCADE, verbose_name='Khách của') #khách của CD hay CR
+    name = models.CharField(max_length=100, verbose_name='Tên khách mời') #Tên khách
+    phone = models.CharField(validators=[phone_regex], max_length=13, blank=True, verbose_name='Số điện thoại') # Số điện thoại
+    address = models.CharField(max_length=100, verbose_name='Địa chỉ') #Địa chỉ
+    ivitation = models.BooleanField(default=False, verbose_name='Đã phát thiệp') #đã phát thiệp hay chưa
+    adherence_wedding = models.BooleanField(default=False, verbose_name='Đã Đến chung vui') #tham gia lễ cưới hay ko
+    money_wedding = models.CharField(max_length=10, default=0, verbose_name='Tiền mừng') #tiền mừng
     class Meta:
         verbose_name_plural = "Quản Lý Khách Mời"
 
