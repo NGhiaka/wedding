@@ -56,7 +56,7 @@ ROOT_URLCONF = 'wedding.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': ['teamplate'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,9 +134,7 @@ STATICFILES_DIRS = (
     ('css' , os.path.join(STATIC_ROOT, 'css')),
     ('js' , os.path.join(STATIC_ROOT, 'js')),
     ('images' , os.path.join(STATIC_ROOT, 'images')),
-    ('font-awesome' , os.path.join(STATIC_ROOT, 'font-awesome')),
-    ('vendor' , os.path.join(STATIC_ROOT, 'vendor')),
-    ('admin' , os.path.join(STATIC_ROOT, 'admin')),
+    ('fonts' , os.path.join(STATIC_ROOT, 'fonts')),
 )
 
 DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
@@ -153,6 +151,8 @@ FILE_UPLOAD_HANDLERS = [
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
 ]
 # API_GOOGLE_KEY = 'AIzaSyDgWBBY8-JklnkHx67KvdgqJ8sHRyeDu70'
+# BOOTSTRAP_ADMIN_SIDEBAR_MENU = False
+
 
 # security 
 SECURE_HSTS_SECONDS = 1

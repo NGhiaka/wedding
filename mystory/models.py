@@ -29,6 +29,7 @@ class About(models.Model):
         return 'Chú Rể' if self.ishusban else 'Cô Dâu'
     name = models.CharField(max_length=200, verbose_name='Họ Tên')
     slug = models.SlugField(max_length=500)
+    avatar = models.ImageField(blank = True, upload_to = 'about', verbose_name='Ảnh Đại Diện')
     ishusban = models.BooleanField(default=1, verbose_name='Là Chú Rể')
     code = models.CharField(max_length=10, verbose_name='Mã code') #Linh: 1904 - Nghia: 0110 
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
