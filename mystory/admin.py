@@ -4,15 +4,15 @@ from .models import *
  
 
 # Register your models here.
-admin.site.site_header = "Admin"
+admin.site.site_header = "Quản Lý Đám Cưới"
 admin.site.site_title = "ADMIN MANAGE"
 admin.site.index_title = "Welcome to ADMIN"
 
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
-    fields = ('name', 'ishusban', 'code')
+    fields = ('name', 'ishusban','avatar', 'code')
     ordering = ('name',)
-    search_fields = ('name',)
+    search_fields = ('name', 'avatar', 'code', 'ishusban', 'user')
     def save_model(self, request, obj, form, change):
         obj.added_by = request.user
         super().save_model(request, obj, form, change)

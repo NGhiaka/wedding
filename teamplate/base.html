@@ -1,0 +1,66 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  {# <meta name="viewport" content="width=device-width, initial-scale=1"> #}
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+    <title>{% block title %}{% endblock %}</title>
+
+
+    <!-- Library CSS -->
+    <link href="{% static 'css/wedding_library.css' %}" rel="stylesheet" data-inprogress>
+
+    <!-- Icons CSS -->
+    <link href="{% static 'fonts/themify-icons.css' %}" rel="stylesheet" data-inprogress>
+
+    <!-- Theme CSS -->
+    <link href="{% static 'css/wedding_style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/min.css' %}" rel="stylesheet" type="text/css" media="screen" data-inprogress>
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+
+    <!-- Google Fonts -->
+   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+
+</head>
+<body>
+
+
+  <!-- Page -->
+  <div class="wed_page" id="wed_page">
+
+    <!-- Header -->
+    {% include 'wedding/pages/header.html' %}
+    <!-- Header End -->
+
+    {% block content %}
+
+    {% endblock %}
+
+    
+  </div>
+  <!-- Page End -->
+  
+
+
+
+<!-- JQuery -->
+<script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+
+<!-- Library JS -->
+<script src="{% static 'js/wedding_min_library.js' %}"></script>
+<script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'js/min.js' %}"></script>
+
+
+<!-- Theme JS -->
+<script src="{% static 'js/wedding_min_script.js' %}"></script>
+
+
+</body>
+</html>
