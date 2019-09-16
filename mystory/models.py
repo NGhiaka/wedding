@@ -37,6 +37,7 @@ class About(models.Model):
         self.slug = slugify(self.name)
         super(About, self).save()
     class Meta:
+        verbose_name = 'Thông Tin'
         verbose_name_plural = "Quản Lý Thông Tin CD-CR"
 
 class Wedding_Invitation(models.Model): #thiệp cưới
@@ -52,6 +53,7 @@ class Wedding_Invitation(models.Model): #thiệp cưới
     location = models.CharField(max_length=500, verbose_name='Địa điểm tổ chức:')
     code = models.OneToOneField(About, on_delete=models.CASCADE, verbose_name='Tổ chức tại nhà')
     class Meta:
+        verbose_name = 'Thiệp Cưới'
         verbose_name_plural = "Quản Lý Thiệp Cưới"
 
 class Gallery(models.Model):
@@ -68,6 +70,7 @@ class Gallery(models.Model):
     def __str__(self):
         return '%s' % self.title
     class Meta:
+        verbose_name = 'Khoảnh Khắc'
         verbose_name_plural = "Quản Lý Album"
 
 class Image(models.Model):
@@ -77,6 +80,7 @@ class Image(models.Model):
     gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE, verbose_name='Bộ sưu tập')
     decription = models.CharField(max_length=50000, blank = True, verbose_name='Ghi chú')
     class Meta:
+        verbose_name = 'Hình Ảnh'
         verbose_name_plural = "Quản Lý Hình Ảnh"
 
 class Story(models.Model):
@@ -95,7 +99,8 @@ class Story(models.Model):
     def __str__(self):
         return '%s' % self.title
     class Meta:
-        verbose_name_plural = "Câu Chuyện Tình Yêu"
+        verbose_name = 'Nhật Ký'
+        verbose_name_plural = "Quản Lý Nhật Ký"
 
 class Blessing(models.Model):
     """Lời chúc phúc
@@ -106,7 +111,8 @@ class Blessing(models.Model):
     name = models.CharField(max_length=100, blank = True, verbose_name='Tên khác mời')
     blessing = models.CharField(max_length=1000, blank = True, verbose_name='Lời chúc')
     class Meta:
-        verbose_name_plural = "Lời Chúc"
+        verbose_name = 'Lời Chúc'
+        verbose_name_plural = "Quản Lý Lời Chúc"
 
 class Invitee(models.Model):
     """Danh sách khách mời
@@ -120,5 +126,6 @@ class Invitee(models.Model):
     adherence_wedding = models.BooleanField(default=False, verbose_name='Đã Đến chung vui') #tham gia lễ cưới hay ko
     money_wedding = models.CharField(max_length=10, default=0, verbose_name='Tiền mừng') #tiền mừng
     class Meta:
+        verbose_name = 'Khách Mời'
         verbose_name_plural = "Quản Lý Khách Mời"
 
