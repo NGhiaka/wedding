@@ -3,5 +3,5 @@ from django.apps import AppConfig
 
 class MystoryConfig(AppConfig):
     name = 'mystory'
-    verbose_name = "Quản Lý"
+    verbose_name = "Quản Lý Nội Dung"
 

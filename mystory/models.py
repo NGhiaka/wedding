@@ -15,6 +15,7 @@ from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 import datetime
+from django.utils.html import escape
 
 phone_regex = RegexValidator(regex=r'^[0-9]{8,11}$', message="Số điện thoại phải có định dạng 0xxxxxxxxxxx.")
 
@@ -29,16 +30,21 @@ class About(models.Model):
         return 'Chú Rể' if self.ishusban else 'Cô Dâu'
     name = models.CharField(max_length=200, verbose_name='Họ Tên')
     slug = models.SlugField(max_length=500)
-    avatar = models.ImageField(blank = True, upload_to = 'about', verbose_name='Ảnh Đại Diện')
+    image = models.ImageField(blank = True, verbose_name='Ảnh Đại Diện', upload_to = 'about')
     ishusban = models.BooleanField(default=1, verbose_name='Là Chú Rể')
     code = models.CharField(max_length=10, verbose_name='Mã code') #Linh: 1904 - Nghia: 0110 
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Thêm bởi')
+    
     def save(self):
         self.slug = slugify(self.name)
         super(About, self).save()
     class Meta:
         verbose_name = 'Thông Tin'
         verbose_name_plural = "Quản Lý Thông Tin CD-CR"
+    def image_tag(self):
+        return u'<img src="/about/%s" width="150" height="150" />' % escape(self.image)
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True
 
 class Wedding_Invitation(models.Model): #thiệp cưới
     #Thông tin thiệp cưới
@@ -82,12 +88,17 @@ class Image(models.Model):
     class Meta:
         verbose_name = 'Hình Ảnh'
         verbose_name_plural = "Quản Lý Hình Ảnh"
+    def image_tag(self):
+        return u'<img src="/gallery/%Y/%m/%d/%s" width="150" height="150" />' % escape(self.path_img)
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True
+
 
 class Story(models.Model):
     """
     Câu truyện tình yêu - Blog
     """
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Thêm bởi')
     title = models.CharField(max_length=100, blank = True, verbose_name='Tiêu đề')
     slug = models.SlugField(max_length=200)
     uploaded_at = models.DateTimeField(auto_now_add=True)   
@@ -101,13 +112,17 @@ class Story(models.Model):
     class Meta:
         verbose_name = 'Nhật Ký'
         verbose_name_plural = "Quản Lý Nhật Ký"
+    def image_tag(self):
+        return u'<img src="/story/%Y/%m/%d/%s" width="150" height="150" />' % escape(self.images)
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True
 
 class Blessing(models.Model):
     """Lời chúc phúc
     name: Họ tên
     blessing: lời chúc
     """
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Thêm bởi')
     name = models.CharField(max_length=100, blank = True, verbose_name='Tên khác mời')
     blessing = models.CharField(max_length=1000, blank = True, verbose_name='Lời chúc')
     class Meta:
@@ -129,3 +144,22 @@ class Invitee(models.Model):
         verbose_name = 'Khách Mời'
         verbose_name_plural = "Quản Lý Khách Mời"
 
+class Menu(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Tên Menu')
+    slug = models.SlugField(max_length=200)
+    link = models.CharField(max_length=100, verbose_name='Đường link')
+    background = models.ImageField(upload_to = 'menu/%Y/%m/%d', verbose_name='Ảnh Nền')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Thêm bởi')
+    uploaded_at = models.DateTimeField(auto_now_add=True)   
+    def save(self):
+        self.slug = slugify(self.title)
+        super(Story, self).save()
+    def __str__(self):
+        return '%s' % self.title
+    class Meta:
+        verbose_name = 'Quản Lý Menu'
+        verbose_name_plural = "Quản Lý Menu"
+    def image_tag(self):
+        return u'<img src="/menu/%Y/%m/%d/%s" width="150" height="150" />' % escape(self.background)
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True
