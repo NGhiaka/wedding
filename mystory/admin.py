@@ -68,9 +68,9 @@ class InviteeAdmin(admin.ModelAdmin):
 # admin.site.register(Story)
 
 @admin.register(Menu)
-class InviteeAdmin(admin.ModelAdmin):
+class MenuAdmin(admin.ModelAdmin):
     list_display = ('name', 'link', 'image_tag','uploaded_at', 'user')
-    fields = ('name', 'link', 'image_tag')
+    fields = ('name', 'link', 'background')
     # readonly_fields = ('image_tag',)
     ordering = ('name', 'user')
     search_fields = ('name',)
