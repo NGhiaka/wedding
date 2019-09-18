@@ -81,7 +81,7 @@ class Gallery(models.Model):
 
 class Image(models.Model):
     """"""
-    path_img = models.ImageField(blank = True, upload_to = 'gallery/%Y/%m/%d', verbose_name='Đường dẫn')
+    path_img = models.ImageField(blank = True, upload_to = 'gallery', verbose_name='Đường dẫn')
     uploaded_at = models.DateTimeField(auto_now_add=True)
     gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE, verbose_name='Bộ sưu tập')
     decription = models.CharField(max_length=50000, blank = True, verbose_name='Ghi chú')
@@ -89,7 +89,7 @@ class Image(models.Model):
         verbose_name = 'Hình Ảnh'
         verbose_name_plural = "Quản Lý Hình Ảnh"
     def image_tag(self):
-        return u'<img src="/gallery/%Y/%m/%d/%s" width="150" height="150" />' % escape(self.path_img)
+        return u'<img src="/gallery/%s" width="150" height="150" />' % escape(self.path_img)
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
 
@@ -102,7 +102,7 @@ class Story(models.Model):
     title = models.CharField(max_length=100, blank = True, verbose_name='Tiêu đề')
     slug = models.SlugField(max_length=200)
     uploaded_at = models.DateTimeField(auto_now_add=True)   
-    images = models.ImageField(upload_to = 'story/%Y/%m/%d', verbose_name='Ảnh đại diện')
+    images = models.ImageField(upload_to = 'story', verbose_name='Ảnh đại diện')
     content = models.CharField(max_length=5000, blank = True, verbose_name='Nội dung')
     def save(self):
         self.slug = slugify(self.title)
@@ -113,7 +113,7 @@ class Story(models.Model):
         verbose_name = 'Nhật Ký'
         verbose_name_plural = "Quản Lý Nhật Ký"
     def image_tag(self):
-        return u'<img src="/story/%Y/%m/%d/%s" width="150" height="150" />' % escape(self.images)
+        return u'<img src="/story/%s" width="150" height="150" />' % escape(self.images)
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
 
@@ -145,21 +145,29 @@ class Invitee(models.Model):
         verbose_name_plural = "Quản Lý Khách Mời"
 
 class Menu(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Tên Menu')
+    LINKNAME= (
+        ('index', 'TRANG CHU'),
+        ('about', 'THONG TIN'),
+        ('story', 'NHAT KY'),
+        ('invitation', 'TIEC CUOI'),
+        ('gallery', 'KHOANH KHAC'),
+        ('blessing', 'LOI CHUC'),
+    )
+    name = models.CharField(max_length=100, verbose_name='Tên MENU', choices=LINKNAME)
     slug = models.SlugField(max_length=200)
-    link = models.CharField(max_length=100, verbose_name='Đường link')
-    background = models.ImageField(upload_to = 'menu/%Y/%m/%d', verbose_name='Ảnh Nền')
+    link = models.CharField(max_length=100, verbose_name='Đường link', choices=LINKNAME)
+    background = models.ImageField(upload_to = 'menu', verbose_name='Ảnh Nền')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Thêm bởi')
     uploaded_at = models.DateTimeField(auto_now_add=True)   
     def save(self):
-        self.slug = slugify(self.title)
-        super(Story, self).save()
+        self.slug = slugify(self.name)
+        super(Menu, self).save()
     def __str__(self):
-        return '%s' % self.title
+        return '%s' % self.name
     class Meta:
         verbose_name = 'Quản Lý Menu'
         verbose_name_plural = "Quản Lý Menu"
     def image_tag(self):
-        return u'<img src="/menu/%Y/%m/%d/%s" width="150" height="150" />' % escape(self.background)
+        return u'<img src="/menu/%s" width="150" height="150" />' % escape(self.background)
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True

@@ -26,9 +26,9 @@
                 
                 <li class="wed_parent {% if 'about' in request.resolver_match.url_name %} current{% endif %}"><a href="#">Thông Tin</a>
                   <ul>
-                       <li class="{% if 'about_her' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:about_her'%}">Cô Dâu</a></li>
+                       <li><a href="{% url 'mystory:about_her'%}">Cô Dâu</a></li>
                        
-                       <li class="{% if 'about_him' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:about_him'%}">Chú Rể</a></li>
+                       <li><a href="{% url 'mystory:about_him'%}">Chú Rể</a></li>
                   </ul>
                 </li>
                 
