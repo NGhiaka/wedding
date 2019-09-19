@@ -1,150 +1,99 @@
-{% extends 'base.html' %}
-
-{% load staticfiles %}
-
-{% block title %} Wedding | Phước Nghĩa & Mỹ Linh {% endblock %}
+{% extends 'base.html' %} {% load staticfiles %} {% block title %} Wedding | Phước Nghĩa & Mỹ Linh {% endblock %} {% block content %}
 
 
-{% block content %}
+<!-- PAGE TITLE SMALL -->
+<div class="wed_page_title wed_page_title_great wed_image_bck wed_fixed wed_wht_txt" data-stellar-background-ratio="0.2" data-image="{{menu.background.url}}">
 
 
-    <!-- PAGE TITLE SMALL -->
-    <div class="wed_page_title wed_page_title_great wed_image_bck wed_fixed wed_wht_txt" data-stellar-background-ratio="0.2" data-image="images/fashion_couple/slider1.jpg">
+    <!-- Over -->
+    <div class="wed_over" data-color="#8630fc" data-opacity="0.9"></div>
+    <div class="wed_over" data-color="#000" data-opacity="0.1"></div>
 
-
-      <!-- Over -->
-      <div class="wed_over" data-color="#8630fc" data-opacity="0.9"></div>
-      <div class="wed_over" data-color="#000" data-opacity="0.1"></div>
-
-      <div class="container text-left">
+    <div class="container text-left">
         <div class="row">
-          
-          <div class="col-md-8">
-            <h1 class="wed_h1_title">Location</h1>
-            <h3>Some Subtitle</h3>
-          </div>
-          
-          <div class="col-md-4">
-            <div class="breadcrumbs">
-              <a href="#">Home</a><a href="#">Pages</a><span>Location</span>
+
+            <div class="col-md-8">
+                <h1 class="wed_h1_title">Tiệc Cưới</h1>
+                <h3>Some Subtitle</h3>
             </div>
-          </div>
-          
+
+            <div class="col-md-4">
+                <div class="breadcrumbs">
+                    <a href="{% url 'mystory:index'%}">Trang Chủ</a><span>Tiệc Cưới</span>
+                </div>
+            </div>
+
         </div>
-      </div>
     </div>
+</div>
 
-    <!-- PAGE TITLE SMALL END-->
+<!-- PAGE TITLE SMALL END-->
 
-    <!-- Content -->
-    <section id="wed_content" class="wed_content">
+<!-- Content -->
+<section id="wed_content" class="wed_content">
 
-        <section class="wed_section_inner">
-          <div class="container">
+    <section class="wed_section_inner">
+        <div class="container">
             <div class="row">
-              <div class="col-md-6 wed_event_hours">
-                <h3>Ceremony Hours</h3>
-                <i>Wedding-Monday</i>
-                <b>8:00 AM – 2:30 PM</b><br>
-                <i>Accomodation-Tuesday</i>
-                <b>8:00 AM – 7:00 PM</b><br>
-                <i>Bachelor-Party-Wednesday</i>
-                <b>8:00 AM – 7:00 PM</b><br>
-                <i>Restaurant-Thuesday</i>
-                <b>8:00 AM – 7:00 PM</b><br>
-                <i>Party-Wednesday</i>
-                <b>6:00 PM – 23:00 PM</b><br>
-              </div>  
-              <div class="col-md-6 hidden-sm hidden-xs">
-                <img src="images/fashion_couple/shutterstock_151862165.jpg" alt="">
-              </div>
+                <div class="col-md-6 wed_event_hours">
+                    <h3>Thông Tin</h3>
+                    {% if invitations%} {%for wedding in invitations%}
+                    <h4>{{wedding.feast}} - {{wedding.time_calendar|date:"D"}}</h4>
+                    <h4>{{wedding.time_calendar|date:"H:i"}} – {{wedding.time_calendar|date:"d-m-Y"}}</h4>
+                    <b>{{wedding.location}}</b><br> {%endfor%} {%endif%}
+                </div>
+                <div class="col-md-6 hidden-sm hidden-xs">
+                    <img src="{{menu.background.url}}" alt="">
+                </div>
             </div>
             <!-- Row End -->
-          </div>
-          <!-- Container End -->
-        </section>
-      <!-- section -->
-      <section class="wed_section_innerpage">
-        <div class="containter">
-          <div class="row wed_inside_map">
-            <div class="col-md-12">
-
-                 <!-- over -->
-              <div class="wed_map_over text-center wed_wht_txt">
-                <div class="wed_map_txt wed_icon_box">
-                  <img class="wed_small_img" src="images/small_people/rising_heart.png" alt="">
-                  <div class="wed_icon_box_content">
-                    <h4><b>Open The Map</b></h4>
-                  </div>
-                </div>
-              </div>
-              <!-- over end -->
-
-              <!-- over -->
-              <div class="wed_over" data-color="rgb(145, 74, 242)" data-opacity="0.9"></div>
-              
-                <!-- map -->
-                <div id="map" class="wed_map">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d310746.90945683786!2d12.918360609588492!3d52.520582938561994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sru!4v1454387964065" style="border:0; height: 450px; width: 100%;" allowfullscreen></iframe>
-                </div>
-                <!-- map end -->
-
-            </div> 
-          </div> 
         </div>
-      <!-- container end -->
-        <div class="container-full">
+        <!-- Container End -->
+    </section>
+    <!-- section -->
+    {% if invitations%} {%for wedding in invitations%}
+    <section class="wed_section_innerpage">
+        <div class="containter">
+            <div class="row wed_inside_map">
+                <div class="col-md-12">
 
-          <div class="row text-center">
-            <!-- Item -->
-            <div class="col-md-4 wed_nopadding">
-              <img src="images/buildings/hotel.jpg" class="wed_fullwidth" alt="">
-              <div class="wed_pad_txt">
-                <h3>Hotel</h3>
-                <span>Avenue Paducah 1285 7th street<br><br></span>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultrices malesuada ante quis pharetra. Nullam non bibendum dolor. Ut vel turpis accumsan, efficitur dolor fermentum, tincidunt metus. Etiam ut ultrices nibh.  Etiam aliquam mauris non hendrerit faucibus. Proin 
-              </div>
-                    
+                    <!-- over -->
+                    <div class="wed_map_over text-center wed_wht_txt">
+                        <div class="wed_map_txt wed_icon_box">
+                            <img class="wed_small_img" src="images/small_people/rising_heart.png" alt="">
+                            <div class="wed_icon_box_content">
+                                <h4><b>Xem bản đồ nhà {{wedding.code}}</b></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- over end -->
+
+                    <!-- over -->
+                    <div class="wed_over" data-color="rgb(145, 74, 242)" data-opacity="0.9"></div>
+
+                    <!-- map -->
+                    <div id="map" class="wed_map">
+                        <iframe src="{{wedding.gmap}}" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                    </div>
+                    <!-- map end -->
+
+                </div>
             </div>
-
-            <!-- Item -->
-            <div class="col-md-4 wed_nopadding">
-              <img src="images/buildings/restaurant.jpg" class="wed_fullwidth" alt="">
-              <div class="wed_pad_txt">
-                  <h3>Restaurant</h3>
-                  <span>Avenue Paducah 1285 7th street<br><br></span>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultrices malesuada ante quis pharetra. Nullam non bibendum dolor. Ut vel turpis accumsan, efficitur dolor fermentum, tincidunt metus. Etiam ut ultrices nibh.  Etiam aliquam mauris non hendrerit faucibus. Proin 
-              </div>   
-              </div>
-               <!-- Item -->
-              <div class="col-md-4 wed_nopadding">
-                <img src="images/buildings/church.jpg" class="wed_fullwidth" alt="">
-                <div class="wed_pad_txt">
-                  <h3>Church</h3>
-                  <span>Avenue Paducah 1285 7th street<br><br></span>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultrices malesuada ante quis pharetra. Nullam non bibendum dolor. Ut vel turpis accumsan, efficitur dolor fermentum, tincidunt metus. Etiam ut ultrices nibh.  Etiam aliquam mauris non hendrerit faucibus. Proin 
-                </div>    
-              </div>
-
-          </div>
-          <!-- Row End -->
         </div>
         <!-- container end -->
+
     </section>
     <!-- section end -->
+    {%endfor%} {%endif%}
+</section>
+<!-- section end -->
 
-  </section>
-  <!-- section end -->
-  
-    
-    <!-- White border -->
-      {% include 'wedding/pages/footer.html' %}
-        <!-- White border end -->
-    </section>
-    <!--Content end -->
+
+<!-- White border -->
+{% include 'wedding/pages/footer.html' %}
+<!-- White border end -->
+</section>
+<!--Content end -->
 
 
 {% endblock %}

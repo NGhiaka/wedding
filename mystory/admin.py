@@ -1,7 +1,10 @@
 from django.contrib import admin
 from .models import *
 
- 
+# import django.contrib.auth.models
+# from django.contrib import auth
+
+# admin.site.unregister(auth.models.Group)
 
 # Register your models here.
 admin.site.site_header = "Wedding"
@@ -23,8 +26,8 @@ class AboutAdmin(admin.ModelAdmin):
 # admin.site.register(Wedding_Invitation)
 @admin.register(Wedding_Invitation)
 class Wedding_InvitationAdmin(admin.ModelAdmin):
-    list_display = ('code', 'location', 'feast', 'time_calendar', 'time_lunar')
-    fields = ('code', 'location', 'feast', 'time_calendar', 'time_lunar')
+    list_display = ('code', 'location','gmap', 'feast', 'time_calendar', 'time_lunar')
+    fields = ('code', 'location', 'gmap', 'feast', 'time_calendar', 'time_lunar')
     ordering = ('code', 'location', 'feast', 'time_calendar', 'time_lunar')
     search_fields = ('code', 'location', 'feast', 'time_calendar', 'time_lunar')
     
@@ -45,9 +48,9 @@ class GalleryAdmin(admin.ModelAdmin):
 
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
-    fields = ('title', 'images', 'content' )
+    fields = ('title', 'images', 'content', 'feeling' )
     # readonl = ('image_tag',)
-    list_display = ('title', 'uploaded_at', 'image_tag', 'user')
+    list_display = ('title', 'uploaded_at', 'image_tag', 'feeling', 'user')
     ordering = ('title',)
     search_fields = ('title',)
     def save_model(self, request, obj, form, change):
@@ -69,9 +72,9 @@ class InviteeAdmin(admin.ModelAdmin):
 
 @admin.register(Menu)
 class MenuAdmin(admin.ModelAdmin):
-    list_display = ('name', 'link', 'image_tag','uploaded_at', 'user')
+    list_display = ('name', 'link', 'image_tag', 'uploaded_at', 'user')
     fields = ('name', 'link', 'background')
-    # readonly_fields = ('image_tag',)
+    readonly_fields = ('image_tag',)
     ordering = ('name','link', 'user')
     search_fields = ('name',)
     def save_model(self, request, obj, form, change):
@@ -80,8 +83,8 @@ class MenuAdmin(admin.ModelAdmin):
 
 @admin.register(Music)
 class MusicAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'link', 'menu','uploaded_at', 'user')
-    fields = ('name', 'link', 'menu')
+    list_display = ('name', 'slug', 'link', 'menu', 'play_show', 'uploaded_at', 'user')
+    fields = ('name', 'link', 'play_show', 'menu')
     # readonly_fields = ('image_tag',)
     ordering = ('name', 'user')
     search_fields = ('name',)

@@ -1,8 +1,5 @@
-{% extends "admin/base.html" %} 
-{% load static %}
-
-{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %} 
-{% block branding %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}"> {{ site_header|default:_('Django administration') }}</a></h1>
-{% endblock %} 
-{% block nav-global %}{% endblock %}
+{% extends "admin/base.html" %} {% load static %} {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %} {% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}"> <img height="60" src="{% static 'images/logo1.png' %} " alt="{{ site_header|default:_('Django administration ') }}"></a>
+</h1>
+{% endblock %} {% block nav-global %}{% endblock %}
