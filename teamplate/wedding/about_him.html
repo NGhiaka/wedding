@@ -9,7 +9,7 @@
 
 
     <!-- PAGE TITLE SMALL -->
-    <div class="wed_page_title wed_page_title_great wed_image_bck wed_fixed wed_wht_txt" data-stellar-background-ratio="0.2" data-image="images/fashion_couple/about_him_short.jpg">
+    <div class="wed_page_title wed_page_title_great wed_image_bck wed_fixed wed_wht_txt" data-stellar-background-ratio="0.2" data-image="{{about.image.url}}">
 
 
       <!-- Over -->
@@ -19,7 +19,7 @@
         <div class="row">
           
           <div class="col-md-8">
-            <h1 class="wed_h1_title">Mark Holts</h1>
+            <h1 class="wed_h1_title">{{about.name}}</h1>
             <h3>Some Subtitle</h3>
           </div>
           
@@ -44,15 +44,9 @@
           <div class="row">
 
             <div class="col-md-12 text-center">
-              <h2 class="wed_form_txt">Little About Me</h2>
+              <h2 class="wed_form_txt">Một Vài thông tin về tôi</h2>
             </div>
-            <div class="col-md-6 col-sm-12 text-left wed_event_hours">
-              <p><b>I am Mark Holts.</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br><br>Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-            </div> 
-            <!-- col end -->
-            <div class="col-md-6 col-sm-12 text-left wed_event">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br> <br>Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-            </div>
+            {{about.decription|safe}}
             <!-- col end -->
             <div class="col-md-12">
               <div class="wed_about_social">

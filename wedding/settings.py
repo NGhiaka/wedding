@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djrichtextfield'
 ]
 
 MIDDLEWARE = [
@@ -83,7 +84,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'wedding_development',
-        'USER': 'wedding',
+        'USER': 'postgres',
         'PASSWORD': '12345678x@X',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -153,6 +154,45 @@ FILE_UPLOAD_HANDLERS = [
 # API_GOOGLE_KEY = 'AIzaSyDgWBBY8-JklnkHx67KvdgqJ8sHRyeDu70'
 # BOOTSTRAP_ADMIN_SIDEBAR_MENU = False
 
+DJRICHTEXTFIELD_CONFIG = {
+    'js': ['//tinymce.cachefly.net/4.1/tinymce.min.js'],
+    'init_template': 'djrichtextfield/init/tinymce.js',
+    'settings': {
+        'menubar': False,
+        'plugins': 'link image',
+        'toolbar': 'bold italic | link image | removeformat',
+        # 'width': 1000
+    },
+    'profiles': {
+        'basic': {
+            'toolbar': 'bold italic | removeformat'
+        },
+        'advanced': {
+            'plugins': 'link image table code',
+            'toolbar': 'formatselect | bold italic | removeformat |'
+                       ' link unlink image table | code'
+        }
+    }
+}
+# DJRICHTEXTFIELD_CONFIG = {
+#     'js': ['//cdn.ckeditor.com/4.4.4/standard/ckeditor.js'],
+#     'css': {
+#         'all': [
+#             'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+#         ]
+#     },
+#     'init_template': 'djrichtextfield/init/ckeditor.js',
+#     'settings': {  # CKEditor
+#         'toolbar': [
+#             {'items': ['Format', '-', 'Bold', 'Italic', '-',
+#                        'RemoveFormat']},
+#             {'items': ['Link', 'Unlink', 'Image', 'Table']},
+#             {'items': ['Source']}
+#         ],
+#         'format_tags': 'p;h1;h2;h3',
+#         'width': 700
+#     }
+# }
 
 # security 
 SECURE_HSTS_SECONDS = 1

@@ -12,7 +12,7 @@ admin.site.index_title = "Welcome to ADMIN"
 class AboutAdmin(admin.ModelAdmin):
     readonly_fields = ('image_tag',)
     list_display = ('name', 'ishusban', 'image_tag', 'code', 'user')
-    fields = ('name', 'ishusban','image', 'code')
+    fields = ('name', 'ishusban','image', 'code', 'decription')
     ordering = ('name',)
     search_fields = ('name', 'code', 'user')
     def save_model(self, request, obj, form, change):
@@ -45,7 +45,7 @@ class GalleryAdmin(admin.ModelAdmin):
 
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
-    fields = ('title', 'image', 'content' )
+    fields = ('title', 'images', 'content' )
     # readonl = ('image_tag',)
     list_display = ('title', 'uploaded_at', 'image_tag', 'user')
     ordering = ('title',)
@@ -71,6 +71,17 @@ class InviteeAdmin(admin.ModelAdmin):
 class MenuAdmin(admin.ModelAdmin):
     list_display = ('name', 'link', 'image_tag','uploaded_at', 'user')
     fields = ('name', 'link', 'background')
+    # readonly_fields = ('image_tag',)
+    ordering = ('name','link', 'user')
+    search_fields = ('name',)
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        super().save_model(request, obj, form, change)
+
+@admin.register(Music)
+class MusicAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug', 'link', 'menu','uploaded_at', 'user')
+    fields = ('name', 'link', 'menu')
     # readonly_fields = ('image_tag',)
     ordering = ('name', 'user')
     search_fields = ('name',)

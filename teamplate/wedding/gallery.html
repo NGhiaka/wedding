@@ -9,7 +9,7 @@
 
 
     <!-- PAGE TITLE SMALL -->
-    <div class="wed_page_title wed_page_title_great wed_image_bck wed_fixed wed_wht_txt" data-stellar-background-ratio="0.2" data-image="images/fashion_couple/slider1.jpg">
+    <div class="wed_page_title wed_page_title_great wed_image_bck wed_fixed wed_wht_txt" data-stellar-background-ratio="0.2" data-image="{{about.image.url}}">
 
 
       <!-- Over -->
@@ -20,13 +20,13 @@
         <div class="row">
           
           <div class="col-md-8">
-            <h1 class="wed_h1_title">Our Memories</h1>
+            <h1 class="wed_h1_title">Khoảnh khắc</h1>
             <h3>Some Subtitle</h3>
           </div>
           
           <div class="col-md-4">
             <div class="breadcrumbs">
-              <a href="#">Home</a><a href="#">Gallery</a><span>Our Gallery</span>
+              <a href="{% url 'mystory:index'%}">Trang Chủ</a><span>Khoảnh Khắc</span>
             </div>
           </div>
           
@@ -44,7 +44,7 @@
 
         <div class="container text-center">
 
-            <h2>Our Gallery</h2>
+            <h2>Thư việc ảnh</h2>
             <!-- filters -->
             <div class="button-group filter-button-group">
               <a data-filter="*">Show All</a>

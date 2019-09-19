@@ -1,0 +1,25 @@
+.invitation{
+	position: relative;
+    width: 50%;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+    color: #7949c8;
+}
+.groom{
+	position: absolute;
+    left: 40px;
+    display: inline-grid;
+}
+.bride{
+	position: absolute;
+    right: 40px;
+    display: inline-grid;
+}
+.position{
+	font-size: 15px;
+	color: #000;
+}
+.wedding-invitation{
+	color: #7949c8;
+}
