@@ -1,93 +1,78 @@
-{% extends 'base.html' %}
-
-{% load staticfiles %}
-
-{% block title %} Wedding | Phước Nghĩa & Mỹ Linh {% endblock %}
+{% extends 'base.html' %} {% load staticfiles %} {% block title %} Wedding | Phước Nghĩa & Mỹ Linh {% endblock %} {% block content %}
 
 
-{% block content %}
+<!-- PAGE TITLE SMALL -->
+<div class="wed_page_title wed_page_title_great wed_image_bck wed_fixed wed_wht_txt" data-stellar-background-ratio="0.2" data-image="{{menu.background.url}}">
 
 
-    <!-- PAGE TITLE SMALL -->
-    <div class="wed_page_title wed_page_title_great wed_image_bck wed_fixed wed_wht_txt" data-stellar-background-ratio="0.2" data-image="images/fashion_couple/slider1.jpg">
+    <!-- Over -->
+    <div class="wed_over" data-color="#8630fc" data-opacity="0.9"></div>
+    <div class="wed_over" data-color="#000" data-opacity="0.1"></div>
 
-
-      <!-- Over -->
-      <div class="wed_over" data-color="#8630fc" data-opacity="0.9"></div>
-      <div class="wed_over" data-color="#000" data-opacity="0.1"></div>
-
-      <div class="container text-left">
+    <div class="container text-left">
         <div class="row">
-          
-          <div class="col-md-8">
-            <h1 class="wed_h1_title">Reservation</h1>
-            <h3>Some Subtitle</h3>
-          </div>
-          
-          <div class="col-md-4">
-            <div class="breadcrumbs">
-              <a href="#">Home</a><a href="#">Pages</a><span>RSVP</span>
+
+            <div class="col-md-8">
+                <h1 class="wed_h1_title">Lời Chúc</h1>
+                <h3>Some Subtitle</h3>
             </div>
-          </div>
-          
+
+            <div class="col-md-4">
+                <div class="breadcrumbs">
+                    <a href="{% url 'mystory:index'%}">Trang Chủ</a><span>Lời Chúc</span>
+                </div>
+            </div>
+
         </div>
-      </div>
     </div>
+</div>
 
-    <!-- PAGE TITLE SMALL END-->
+<!-- PAGE TITLE SMALL END-->
 
-    <!-- Content -->
-    <section id="wed_content" class="wed_content">
+<!-- Content -->
+<section id="wed_content" class="wed_content">
 
-      <!-- section -->
-      <section class="wed_section_innerpage">
+    <!-- section -->
+    <section class="wed_section_innerpage">
         <div class="container text-center  wed_great_titles">
-          <div class="row">
-            <div class="col-md-8 col-md-pull-2 col-md-push-2 col-sm-12">
-            <h2 class="wed_form_txt">Lời Chúc</h2>
-            <p class="wed_form_txt">Gửi lời chúc tốt đẹp tới Cô Dâu-Chú Rể.</p>
-              <form id="wed_form" class="wed_form">
-                <div class="row">
-                  <div class="col-md-12">
-                    <input type="text" class="form-control" placeholder="Name" name="name" required>
-                  </div>
-                  <div class="col-md-12">
-                    <input type="text" class="form-control" placeholder="E-mail" name="email" required>
-                  </div>
-                  <div class="col-md-12">
-                    <select class="form-control" name="guests" required>
-                      <option value="">#Guests</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <textarea class="form-control" placeholder="Message" name="message"></textarea>
-                    <input type="submit" class="btn btn_new wed_btn_margbot" value="Send">
-                  </div>
+            <div class="row">
+                <div class="col-md-8 col-md-pull-2 col-md-push-2 col-sm-12">
+                    <h2 class="wed_form_txt">Lời Chúc</h2>
+                    <p class="wed_form_txt">Gửi lời chúc tốt đẹp tới Cô Dâu-Chú Rể.</p>
+                    <form id="wed_form" class="wed_form">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" placeholder="Tên khách" name="name" required>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" placeholder="Mối quan hệ với CD-CR" name="relation" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea class="form-control" placeholder="Lời chúc cho cô dâu và chú rể" name="blessing"></textarea>
+                                <input type="submit" class="btn btn_new wed_btn_margbot" value="Send">
+                            </div>
+
+                        </div>
+                    </form>
 
                 </div>
-              </form>
-
+                <!-- col end -->
             </div>
-            <!-- col end -->
-          </div>
-          <!-- row end -->
+            <!-- row end -->
         </div>
         <!-- container end -->
 
-        </section>
-        <!-- section end -->      
-    
-
-      <!-- White border -->
-      {% include 'wedding/pages/footer.html' %}
-        <!-- White border end -->
     </section>
-    <!--Content end -->
+    <!-- section end -->
+
+
+    <!-- White border -->
+    {% include 'wedding/pages/footer.html' %}
+    <!-- White border end -->
+</section>
+<!--Content end -->
 
 
 {% endblock %}

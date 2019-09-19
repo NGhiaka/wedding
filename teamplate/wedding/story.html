@@ -1,167 +1,85 @@
-{% extends 'base.html' %}
-
-{% load staticfiles %}
-
-{% block title %} Wedding | Phước Nghĩa & Mỹ Linh {% endblock %}
-
-
-{% block content %}
+{% extends 'base.html' %} {% load staticfiles %} {% block title %} Wedding | Phước Nghĩa & Mỹ Linh {% endblock %} {% block content %}
 
 
 
-    <!-- PAGE TITLE SMALL -->
-    <div class="wed_page_title wed_page_title_great wed_image_bck wed_fixed wed_wht_txt" data-stellar-background-ratio="0.2" data-image="images/fashion_couple/rsvp.jpg">
+<!-- PAGE TITLE SMALL -->
+<div class="wed_page_title wed_page_title_great wed_image_bck wed_fixed wed_wht_txt" data-stellar-background-ratio="0.2" data-image="{{menu.background.url}}">
 
 
-       <!-- Over -->
-      <div class="wed_over" data-color="rgb(129, 60, 224)" data-opacity="0.9"></div>
+    <!-- Over -->
+    <div class="wed_over" data-color="rgb(129, 60, 224)" data-opacity="0.9"></div>
 
-      <div class="container text-left">
+    <div class="container text-left">
         <div class="row">
-          
-          <div class="col-md-8">
-            <h1 class="wed_h1_title">Our Story</h1>
-            <h3>Some Subtitle</h3>
-          </div>
-          
-          <div class="col-md-4">
-            <div class="breadcrumbs">
-              <a href="#">Home</a><a href="#">Pages</a><span>Story</span>
+
+            <div class="col-md-8">
+                <h1 class="wed_h1_title">Nhật Ký</h1>
+                <h3>Some Subtitle</h3>
             </div>
-          </div>
-          
+
+            <div class="col-md-4">
+                <div class="breadcrumbs">
+                    <a href="{% url 'mystory:index'%}">Trang Chủ</a><span>Nhật Ký</span>
+                </div>
+            </div>
+
         </div>
-      </div>
     </div>
+</div>
 
-    <!-- PAGE TITLE SMALL END-->
+<!-- PAGE TITLE SMALL END-->
 
-    <!-- Content -->
-    <section id="wed_content" class="wed_content">
+<!-- Content -->
+<section id="wed_content" class="wed_content">
+    {% if stories%} {%for story in stories%}
 
-      <!-- section -->
-      <section class="wed_section_innerpage">
+    <!-- section -->
+    <section class="wed_section_innerpage">
         <div class="container wed_great_titles">
-          <div class="row">
+            <div class="row">
 
-            <div class="col-md-12 text-center">
-              <h2 class="wed_form_txt">How we met</h2>
-            </div>
-            <div class="col-md-6 col-sm-12 text-left wed_event_hours">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br><br>Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-            </div> 
-            <!-- col end -->
-            <div class="col-md-6 col-sm-12 text-left wed_event">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br> <br>Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-            </div>
-            <!-- col end -->
-          </div>
-          <!-- row end -->
-          </div>
-          <!-- container end -->
-      </section>
-      <!-- section end -->
-        
-      <!-- White border -->
-      <div class="wed_white_inner_border">
-
-        <!-- section -->
-        <section class="wed_section_inner wed_image_bck wed_wht_txt wed_fixed wed_border" data-stellar-background-ratio="0.2" data-image="images/fashion_couple/slider3.jpg" >
-          <!-- Over -->
-          <div class="wed_over" data-color="rgb(129, 60, 224)" data-opacity="0.9"></div>
-
-          <div class="container">
-            <div class="row wed_thin_titles">
-              <div class="col-md-12 text-center" >
-                <h2>“ That was a Big day! ”</h2>   
-              </div>
-              <!-- col end -->
+                <div class="col-md-12 text-center">
+                    <h2 class="wed_form_txt">{{story.title}}</h2>
+                </div>
+                {{story.content|safe}}
+                <!-- col end -->
             </div>
             <!-- row end -->
-          </div>          
-          <!-- container end -->
-
-        </section>
-        <!-- section end -->
-      </div>   
-      <!-- White border end-->
-
-      <!-- section -->
-      <section class="wed_section_innerpage">
-        <div class="container wed_great_titles">
-          <div class="row">
-
-            <div class="col-md-12 text-center">
-              <h2 class="wed_form_txt">How he asked</h2>
-            </div>
-            <div class="col-md-6 col-sm-12 text-left wed_event_hours">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br><br>Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-            </div> 
-            <!-- col end -->
-            <div class="col-md-6 col-sm-12 text-left wed_event">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br> <br>Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-            </div>
-            <!-- col end -->
-          </div>
-          <!-- row end -->
-          </div>
-          <!-- container end -->
-      </section>
-      <!-- section end -->
-
-      <!-- White border -->
-      <div class="wed_white_inner_border">
-
-        <!-- section -->
-        <section class="wed_section_inner wed_image_bck wed_wht_txt wed_fixed wed_border" data-stellar-background-ratio="0.2" data-image="images/fashion_couple/rsvp.jpg" >
-          <!-- Over -->
-          <div class="wed_over" data-color="rgb(129, 60, 224)" data-opacity="0.9"></div>
-
-          <div class="container">
-            <div class="row wed_thin_titles">
-              <div class="col-md-12 text-center" >
-                <h2>“ He asked...<br>She said Yes! "</h2>   
-              </div>
-              <!-- col end -->
-            </div>
-            <!-- row end -->
-          </div>          
-          <!-- container end -->
-
-        </section>
-        <!-- section end -->
-      </div>   
-      <!-- White border end-->
-
-      <!-- section -->
-      <section class="wed_section_innerpage">
-        <div class="container wed_great_titles">
-          <div class="row">
-
-            <div class="col-md-12 text-center">
-              <h2 class="wed_form_txt">We're getting married</h2>
-            </div>
-            <div class="col-md-6 col-sm-12 text-left wed_event_hours">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br><br>Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-            </div> 
-            <!-- col end -->
-            <div class="col-md-6 col-sm-12 text-left wed_event">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br> <br>Consequuntur officia, commodi totam harum velit dicta expedita. Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Maiores esse voluptatem, quod, sapiente, sit vel nemo totam dicta asperiores animi quae, officiis.Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-            </div>
-            <!-- col end -->
-          </div>
-          <!-- row end -->
-          </div>
-          <!-- container end -->
-      </section>
-      <!-- section end -->
-        
-
-      <!-- White border -->
-      {% include 'wedding/pages/footer.html' %}
-        <!-- White border end -->
+        </div>
+        <!-- container end -->
     </section>
-    <!--Content end -->
+    <!-- section end -->
+    {%if story.feeling%}
+    <!-- White border -->
+    <div class="wed_white_inner_border">
+
+        <!-- section -->
+        <section class="wed_section_inner wed_image_bck wed_wht_txt wed_fixed wed_border" data-stellar-background-ratio="0.2" data-image="{{story.images.url}}">
+            <!-- Over -->
+            <div class="wed_over" data-color="rgb(129, 60, 224)" data-opacity="0.9"></div>
+
+            <div class="container">
+                <div class="row wed_thin_titles">
+                    <div class="col-md-12 text-center">
+                        <h2>{{story.feeling}}</h2>
+                    </div>
+                    <!-- col end -->
+                </div>
+                <!-- row end -->
+            </div>
+            <!-- container end -->
+
+        </section>
+        <!-- section end -->
+    </div>
+    <!-- White border end-->
+    {%endif%} {%endfor%} {%endif%}
+
+    <!-- White border -->
+    {% include 'wedding/pages/footer.html' %}
+    <!-- White border end -->
+</section>
+<!--Content end -->
 
 
 {% endblock %}

@@ -43,7 +43,7 @@ class About(models.Model):
         verbose_name = 'Thông Tin'
         verbose_name_plural = "Quản Lý Thông Tin CD-CR"
     def image_tag(self):
-        return u'<img src="/about/%s" width="150" height="150" />' % escape(self.image)
+        return u'<img src="%s" width="150" height="150" />' % escape(self.image)
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
 
@@ -57,7 +57,8 @@ class Wedding_Invitation(models.Model): #thiệp cưới
     feast = models.CharField(max_length=100, verbose_name='Lễ', choices=PARTY) #tên đám: Vu Quy - Tân Hôn
     time_calendar = models.DateTimeField('Ngày Dương Lịch') #Ngày dương lịch
     time_lunar = models.DateTimeField('Ngày Âm Lịch') #Ngày âm lịch
-    location = models.CharField(max_length=500, verbose_name='Địa điểm tổ chức:')
+    location = models.CharField(blank=True, max_length=500, verbose_name='Địa điểm tổ chức')
+    gmap = models.CharField(blank=True, max_length=500, verbose_name='Google map')
     code = models.OneToOneField(About, on_delete=models.CASCADE, verbose_name='Tổ chức tại nhà')
     class Meta:
         verbose_name = 'Thiệp Cưới'
@@ -69,7 +70,7 @@ class Gallery(models.Model):
     """
     title = models.CharField(max_length=200, verbose_name='Bộ sưu tập')
     slug = models.SlugField(max_length=500)
-    decription = RichTextField(blank = True, verbose_name='Nội dung')
+    decription = RichTextField(blank = True, verbose_name='Nội dung', field_settings='advanced')
     uploaded_at = models.DateTimeField(auto_now_add=True)   
     def save(self):
         self.slug = slugify(self.title)
@@ -85,12 +86,13 @@ class Image(models.Model):
     path_img = models.ImageField(blank = True, upload_to = 'gallery', verbose_name='Đường dẫn')
     uploaded_at = models.DateTimeField(auto_now_add=True)
     gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE, verbose_name='Bộ sưu tập')
-    decription = RichTextField(blank = True, verbose_name='Ghi chú')
+    decription = models.CharField(max_length=500, blank = True, verbose_name='Ghi chú')
+    slide_show = models.BooleanField(default=1, verbose_name='Ảnh Trình Chiếu')
     class Meta:
         verbose_name = 'Hình Ảnh'
         verbose_name_plural = "Quản Lý Hình Ảnh"
     def image_tag(self):
-        return u'<img src="/gallery/%s" width="150" height="150" />' % escape(self.path_img)
+        return u'<img src="%s" width="150" height="150" />' % escape(self.path_img)
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
 
@@ -104,7 +106,8 @@ class Story(models.Model):
     slug = models.SlugField(max_length=200)
     uploaded_at = models.DateTimeField(auto_now_add=True)   
     images = models.ImageField(upload_to = 'story', verbose_name='Ảnh đại diện')
-    content = RichTextField(blank = True, verbose_name='Nội dung')
+    content = RichTextField(blank = True, verbose_name='Nội dung', field_settings='advanced')
+    feeling = models.CharField(max_length=100, blank = True, verbose_name='Cảm Nhận')
     def save(self):
         self.slug = slugify(self.title)
         super(Story, self).save()
@@ -114,7 +117,7 @@ class Story(models.Model):
         verbose_name = 'Nhật Ký'
         verbose_name_plural = "Quản Lý Nhật Ký"
     def image_tag(self):
-        return u'<img src="/story/%s" width="150" height="150" />' % escape(self.images)
+        return u'<img src="%s" width="150" height="150" />' % escape(self.images)
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
 
@@ -123,9 +126,9 @@ class Blessing(models.Model):
     name: Họ tên
     blessing: lời chúc
     """
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Thêm bởi')
     name = models.CharField(max_length=100, blank = True, verbose_name='Tên khác mời')
-    blessing = models.TextField(max_length=1000, blank = True, verbose_name='Lời chúc')
+    relation = models.CharField(max_length=100, null=True, blank=True, verbose_name='Mối quan hệ')
+    blessing = models.TextField(max_length=2000, blank = True, verbose_name='Lời chúc')
     class Meta:
         verbose_name = 'Lời Chúc'
         verbose_name_plural = "Quản Lý Lời Chúc"
@@ -169,8 +172,11 @@ class Menu(models.Model):
         verbose_name = 'Quản Lý Menu'
         verbose_name_plural = "Quản Lý Menu"
     def image_tag(self):
-        return u'<img src="/menu/%s" width="150" height="150" />' % escape(self.background)
-    image_tag.short_description = 'Image'
+        if self.background:
+            return u'<img src="%s" />' % self.background
+        else:
+            return '(Sin imagen)'
+    image_tag.short_description = 'Ảnh Nền'
     image_tag.allow_tags = True
 
 class Music(models.Model):
@@ -179,10 +185,11 @@ class Music(models.Model):
     link = models.CharField(max_length=100, verbose_name='Link Nhạc')
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE, verbose_name='Phát Nhạc Ở')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Thêm bởi')
-    uploaded_at = models.DateTimeField(auto_now_add=True)   
+    uploaded_at = models.DateTimeField(auto_now_add=True)  
+    play_show = models.BooleanField(default=1, verbose_name='Nhạc Nền Slide Show')
     def save(self):
         self.slug = slugify(self.name)
-        super(Menu, self).save()
+        super(Music, self).save()
     def __str__(self):
         return '%s' % self.name
     class Meta:
