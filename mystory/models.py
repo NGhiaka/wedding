@@ -1,22 +1,23 @@
-# Create your models here.
 
 # Create your models here.
 from django.db import models
 # from passlib.hash import pbkdf2_sha256
 # from django.core.urlresolvers import reverse
-from django.urls import reverse
+# from django.urls import reverse
 # from somewhere import handle_uploaded_file
-from django.core.files.storage import FileSystemStorage
-from django.conf import settings
+# from django.core.files.storage import FileSystemStorage
+# from django.conf import settings
 # from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import RegexValidator
 # from ckeditor.fields import RichTextField
 # from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
-import datetime
+# import datetime
 from django.utils.html import escape
 from djrichtextfield.models import RichTextField
+from django.template.defaultfilters import truncatechars,truncatewords
+
 
 phone_regex = RegexValidator(regex=r'^[0-9]{8,11}$', message="Số điện thoại phải có định dạng 0xxxxxxxxxxx.")
 
@@ -39,9 +40,13 @@ class About(models.Model):
     def save(self):
         self.slug = slugify(self.name)
         super(About, self).save()
+    @property
+    def short_content(self):
+        return truncatewords(self.decription, 15)
     class Meta:
         verbose_name = 'Thông Tin'
         verbose_name_plural = "Quản Lý Thông Tin CD-CR"
+    
     def image_tag(self):
         return u'<img src="%s" width="150" height="150" />' % escape(self.image)
     image_tag.short_description = 'Image'
@@ -60,6 +65,9 @@ class Wedding_Invitation(models.Model): #thiệp cưới
     location = models.CharField(blank=True, max_length=500, verbose_name='Địa điểm tổ chức')
     gmap = models.CharField(blank=True, max_length=500, verbose_name='Google map')
     code = models.OneToOneField(About, on_delete=models.CASCADE, verbose_name='Tổ chức tại nhà')
+    @property
+    def short_content(self):
+        return truncatechars(self.gmap, 30)
     class Meta:
         verbose_name = 'Thiệp Cưới'
         verbose_name_plural = "Quản Lý Thiệp Cưới"
@@ -71,7 +79,10 @@ class Gallery(models.Model):
     title = models.CharField(max_length=200, verbose_name='Bộ sưu tập')
     slug = models.SlugField(max_length=500)
     decription = RichTextField(blank = True, verbose_name='Nội dung', field_settings='advanced')
-    uploaded_at = models.DateTimeField(auto_now_add=True)   
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    @property
+    def short_content(self):
+        return truncatewords(self.decription, 20)
     def save(self):
         self.slug = slugify(self.title)
         super(Gallery, self).save()
@@ -91,6 +102,9 @@ class Image(models.Model):
     class Meta:
         verbose_name = 'Hình Ảnh'
         verbose_name_plural = "Quản Lý Hình Ảnh"
+    @property
+    def short_content(self):
+        return truncatewords(self.decription, 10)
     def image_tag(self):
         return u'<img src="%s" width="150" height="150" />' % escape(self.path_img)
     image_tag.short_description = 'Image'
@@ -113,6 +127,9 @@ class Story(models.Model):
         super(Story, self).save()
     def __str__(self):
         return '%s' % self.title
+    @property
+    def short_content(self):
+        return truncatewords(self.content, 15)
     class Meta:
         verbose_name = 'Nhật Ký'
         verbose_name_plural = "Quản Lý Nhật Ký"
@@ -120,6 +137,7 @@ class Story(models.Model):
         return u'<img src="%s" width="150" height="150" />' % escape(self.images)
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
+
 
 class Blessing(models.Model):
     """Lời chúc phúc
@@ -182,7 +200,7 @@ class Menu(models.Model):
 class Music(models.Model):
     name = models.CharField(max_length=100, verbose_name='Tên Bài Hát')
     slug = models.SlugField(max_length=200)
-    link = models.CharField(max_length=100, verbose_name='Link Nhạc')
+    link = models.CharField(max_length=2000, verbose_name='Link Nhạc')
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE, verbose_name='Phát Nhạc Ở')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Thêm bởi')
     uploaded_at = models.DateTimeField(auto_now_add=True)  
@@ -192,6 +210,9 @@ class Music(models.Model):
         super(Music, self).save()
     def __str__(self):
         return '%s' % self.name
+    @property
+    def short_link(self):
+        return truncatechars(self.link, 30)
     class Meta:
         verbose_name = 'Quản Lý Nhạc Nền'
         verbose_name_plural = "Quản Lý Nhạc Nền"

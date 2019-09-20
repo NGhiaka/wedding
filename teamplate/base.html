@@ -1,12 +1,13 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  {# <meta name="viewport" content="width=device-width, initial-scale=1"> #}
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
     <title>{% block title %}{% endblock %}</title>
 
@@ -25,44 +26,48 @@
 
 
     <!-- Google Fonts -->
-   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
 
 </head>
+
 <body>
 
 
-  <!-- Page -->
-  <div class="wed_page" id="wed_page">
+    <!-- Page -->
+    <div class="wed_page" id="wed_page">
 
-    <!-- Header -->
-    {% include 'wedding/pages/header.html' %}
-    <!-- Header End -->
+        <!-- Header -->
+        {% include 'wedding/pages/header.html' %}
+        <!-- Header End -->
 
-    {% block content %}
+        {% block content %}
+        <!-- CONTENT -->
+        {% endblock %}
 
-    {% endblock %}
-
-    
-  </div>
-  <!-- Page End -->
-  
-
-
-
-<!-- JQuery -->
-<script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
-
-<!-- Library JS -->
-<script src="{% static 'js/wedding_min_library.js' %}"></script>
-<script src="{% static 'js/jquery.countdown.min.js' %}"></script>
-<script src="{% static 'js/min.js' %}"></script>
+        <!-- Music -->
+        {% include 'wedding/pages/music.html' %}
+        <!-- Header End -->
+    </div>
+    <!-- Page End -->
 
 
-<!-- Theme JS -->
-<script src="{% static 'js/wedding_min_script.js' %}"></script>
-<!-- style custom JS -->
-<script src="{% static 'js/style.js' %}"></script>
+
+
+    <!-- JQuery -->
+    <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+
+    <!-- Library JS -->
+    <script src="{% static 'js/wedding_min_library.js' %}"></script>
+    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'js/min.js' %}"></script>
+
+
+    <!-- Theme JS -->
+    <script src="{% static 'js/wedding_min_script.js' %}"></script>
+    <!-- style custom JS -->
+    <script src="{% static 'js/style.js' %}"></script>
 
 </body>
+
 </html>

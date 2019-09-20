@@ -1,16 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from mystory.models import *
+from mystory.forms import BlessingForm
 
 # Create your views here.
 
 def index(request, code=1):
 	menu = Menu.objects.get(link='trang-chu')
+	musics = Music.objects.filter(menu=menu)
 	# about = About.objects.all()
 	weddings = Wedding_Invitation.objects.all()
 	context = {
 		'menu': menu,
-		# 'about':about,
+		'musics':musics,
 		'weddings': weddings
 	}
 	return render(request, 'wedding/index.html', context)
@@ -66,10 +68,19 @@ def Galleries(request):
 # 	return render(request, 'wedding/story.html')
 
 def Blessings(request):
+	
+	if request.method == 'POST':
+		form = BlessingForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('/loi-chuc/')
+	form = BlessingForm()
 	menu = Menu.objects.get(link='loi-chuc')
-	blessings = Blessing.objects.all()
+	blessings = Blessing.objects.all() 
 	context = {
 		'menu': menu,
 		'blessings':blessings,
+		'form': form
 	}
-	return render(request, 'wedding/blessing.html',context)
+
+	return render(request, 'wedding/blessing.html', context)

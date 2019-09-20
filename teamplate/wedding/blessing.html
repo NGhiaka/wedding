@@ -34,24 +34,43 @@
 
     <!-- section -->
     <section class="wed_section_innerpage">
+        <div class="container wed_great_titles">
+            <div class="blessing">
+                <div class="blessing-title"><span>Nghĩa Lê</span>-<span>Bạn</span></div>
+                <div class="blessing-content">Chém gió quá bạn ơi</div>
+            </div>
+
+            <!-- col end -->
+        </div>
+        <!-- row end -->
+        </div>
+        <!-- container end -->
+    </section>
+
+    <!-- section -->
+    <section class="wed_section_innerpage">
         <div class="container text-center  wed_great_titles">
             <div class="row">
                 <div class="col-md-8 col-md-pull-2 col-md-push-2 col-sm-12">
                     <h2 class="wed_form_txt">Lời Chúc</h2>
                     <p class="wed_form_txt">Gửi lời chúc tốt đẹp tới Cô Dâu-Chú Rể.</p>
-                    <form id="wed_form" class="wed_form">
+                    <form method="post">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Tên khách" name="name" required>
+                                {{form.name}}
+                                <!-- <input type="text" class="form-control" placeholder="Tên khách" name="name" required> -->
                             </div>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Mối quan hệ với CD-CR" name="relation" required>
+                                {{form.relation}}
+                                <!-- <input type="text" class="form-control" placeholder="Mối quan hệ với CD-CR" name="relation" required> -->
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <textarea class="form-control" placeholder="Lời chúc cho cô dâu và chú rể" name="blessing"></textarea>
-                                <input type="submit" class="btn btn_new wed_btn_margbot" value="Send">
+                                {{form.blessing}}
+                                <!-- <textarea class="form-control" placeholder="Lời chúc cho cô dâu và chú rể" name="blessing"></textarea> -->
+                                <input type="submit" class="btn btn_new " value="Gửi">
                             </div>
 
                         </div>
