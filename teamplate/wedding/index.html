@@ -36,7 +36,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 col-md-offset-2 col-md-8 text-center">
+                    <div class="text-center">
                         <div class="wed_topstory_titile wed_great_titles">
                             <h2 class="wed_margtop">
                                 Chúc Mừng Đôi Uyên Ương
@@ -56,51 +56,50 @@
                 {% if weddings%} {%for wedding in weddings%}
                 <!-- Item -->
                 {% if wedding.code.ishusban%}
-                <div class="wed_wrapper">
-                    <div class="wed_img_1 skrollable skrollable-after" data-bottom="left:20%" data-center="left:0" data-image="images/fashion_couple/about_him.jpg" style="left: 0px; background-image: url({{wedding.code.image.url}});">
-                        <a href="{% url 'mystory:about_him'%}" class="btn btn_new btn_popup">Chú Rể</a>
-                        <h6 class="wed_name_left"><br><span>{{wedding.code.name}}</span></h6>
-                    </div>
-                </div>
+                  <div class="wed_wrapper">
+                      <div class="wed_img_1 skrollable skrollable-after" data-bottom="left:20%" data-center="left:0" data-image="images/fashion_couple/about_him.jpg" style="left: 0px; background-image: url({{wedding.code.image.url}});">
+                          <a href="{% url 'mystory:about_him'%}" class="btn btn_new btn_popup">Chú Rể</a>
+                          <h6 class="wed_name_left"><br><span>{{wedding.code.name}}</span></h6>
+                      </div>
+                  </div>
                 {% else %}
                 <!-- Item -->
-                <div class="wed_wrapper">
-                    <div class="wed_img_2 skrollable skrollable-after" data-bottom="right:20%" data-center="right:0" data-image="images/fashion_couple/about_her.jpg" style="right: 0px; background-image: url({{wedding.code.image.url}});">
-                        <a href="{% url 'mystory:about_her'%}" class="btn btn_new btn_popup">Cô Dâu</a>
-                        <h6 class="wed_name_right"><br><span>{{wedding.code.name}}</span></h6>
-                    </div>
-                </div>
+                  <div class="wed_wrapper">
+                      <div class="wed_img_2 skrollable skrollable-after" data-bottom="right:20%" data-center="right:0" data-image="images/fashion_couple/about_her.jpg" style="right: 0px; background-image: url({{wedding.code.image.url}});">
+                          <a href="{% url 'mystory:about_her'%}" class="btn btn_new btn_popup">Cô Dâu</a>
+                          <h6 class="wed_name_right"><br><span>{{wedding.code.name}}</span></h6>
+                      </div>
+                  </div>
                 {% endif%} {%endfor%} {% endif%}
                 <!-- Couple Text -->
                 {% if weddings%}
-                <div class="married_txt skrollable skrollable-after wedding-invitation" data-bottom="opacity:0" data-center="opacity:1" style="opacity: 1;">
-                    <div class="wed_portfolio_item_cont">
-                        {%for wedding in weddings%}
-                        <div class="invitation-panel-content {{wedding.code.slug}}" %}>
-                            <h3>Lễ {{wedding.feast}}</h3>
-                        </div>
-                        {%endfor%}
-                        <div class="invitation">
-                            {%for wedding in weddings%}
-                            <span class="{{wedding.code.ishusban|yesno:'groom,bride' }}">
-                              <span class="position">{{wedding.code}}</span> {{wedding.code.name}}
-                            </span>
-                            {% endfor%}
-                            <br>&
-                        </div>
-                        {% if weddings%} {%for wedding in weddings%}
-                        <div class="invitation-panel-content {{wedding.code.slug}}">
-                            <p> <span class="position"><strong>Được Tổ Chức</strong></span><br>
-                                <span class="position">Tại</span> <strong>{{wedding.location}}.</strong><br>
-                                <span class="position">Vào lúc</span> <strong>{{wedding.time_calendar|date:"H:i"}}</strong>
-                                <span class="position">Ngày </span> <strong>{{wedding.time_calendar|date:"d-m-Y"}}</strong>
-                                <span class="position">dương Lịch</span><br>
-                                <span class="position">Nhằm ngày </span><strong>{{wedding.time_lunar|date:"d-m-Y"}}</strong> <span class="position">âm Lịch </span><br></p>
-                        </div>
-                        {%endfor%} {% endif%}
-                        <a href="{% url 'mystory:blessing'%}" class="btn btn_new">Gửi Lời Chúc</a>
-                    </div>
-                </div>
+                  <div class="married_txt skrollable skrollable-after wedding-invitation" data-bottom="opacity:0" data-center="opacity:1" style="opacity: 1;">
+                      <div class="wed_portfolio_item_cont">
+                          {%for wedding in weddings%}
+                          <div class="invitation-panel-content {{wedding.code.slug}}" %}>
+                              <h3>Lễ {{wedding.feast}}</h3>
+                          </div>
+                          {%endfor%}
+                          <div class="row invitation">
+                              {%for wedding in weddings%}
+                              <div class="colum-3 colum-s-12 {{wedding.code.ishusban|yesno:'groom,bride' }}">
+                                <span class="position">{{wedding.code}}</span> {{wedding.code.name}}
+                              </div>
+                              {% endfor%}
+                          </div>
+                          {% if weddings%} {%for wedding in weddings%}
+                          <div class="invitation-panel-content {{wedding.code.slug}}">
+                              <p> <span class="position"><strong>Được Tổ Chức</strong></span><br>
+                                  <span class="position">Tại</span> <strong>{{wedding.location}}.</strong><br>
+                                  <span class="position">Vào lúc</span> <strong>{{wedding.time_calendar|date:"H:i"}}</strong>
+                                  <span class="position">Ngày </span> <strong>{{wedding.time_calendar|date:"d-m-Y"}}</strong>
+                                  <span class="position">dương Lịch</span><br>
+                                  <span class="position">Nhằm ngày </span><strong>{{wedding.time_lunar|date:"d-m-Y"}}</strong> <span class="position">âm Lịch </span><br></p>
+                          </div>
+                          {%endfor%} {% endif%}
+                          <a href="{% url 'mystory:blessing'%}" class="btn btn_new">Gửi Lời Chúc</a>
+                      </div>
+                  </div>
                 {% endif%}
             </div>
             <!-- END of CONTAINER -->

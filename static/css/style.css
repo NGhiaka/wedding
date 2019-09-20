@@ -1,6 +1,9 @@
+a{
+	cursor: pointer;
+}
 .invitation {
     position: relative;
-    width: 50%;
+    /*width: 50%;*/
     margin: auto;
     font-size: 20px;
     font-weight: bold;
@@ -8,14 +11,14 @@
 }
 
 .groom {
-    position: absolute;
-    left: 40px;
+    /*position: absolute;
+    left: 40px;*/
     display: inline-grid;
 }
 
 .bride {
-    position: absolute;
-    right: 40px;
+    /*position: absolute;
+    right: 40px;*/
     display: inline-grid;
 }
 
@@ -33,4 +36,45 @@
 }
 .invitation-panel-content{
 	display: none;
+}
+.text-center .wed_wht_txt h3{
+	max-width: 100%;
+}
+.wed_portfolio_item_cont:hover:after {
+    opacity: 0.3;
+}
+/* For mobile phones: */
+[class*="colum-"] {
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .colum-s-1 {width: 8.33%;}
+  .colum-s-2 {width: 16.66%;}
+  .colum-s-3 {width: 25%;}
+  .colum-s-4 {width: 33.33%;}
+  .colum-s-5 {width: 41.66%;}
+  .colum-s-6 {width: 50%;}
+  .colum-s-7 {width: 58.33%;}
+  .colum-s-8 {width: 66.66%;}
+  .colum-s-9 {width: 75%;}
+  .colum-s-10 {width: 83.33%;}
+  .colum-s-11 {width: 91.66%;}
+  .colum-s-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .colum-1 {width: 8.33%;}
+  .colum-2 {width: 16.66%;}
+  .colum-3 {width: 25%;}
+  .colum-4 {width: 33.33%;}
+  .colum-5 {width: 41.66%;}
+  .colum-6 {width: 50%;}
+  .colum-7 {width: 58.33%;}
+  .colum-8 {width: 66.66%;}
+  .colum-9 {width: 75%;}
+  .colum-10 {width: 83.33%;}
+  .colum-11 {width: 91.66%;}
+  .colum-12 {width: 100%;}
 }
