@@ -1,72 +1,65 @@
-{% extends 'base.html' %}
-
-{% load staticfiles %}
-
-{% block title %} Wedding | Phước Nghĩa & Mỹ Linh {% endblock %}
+{% extends 'base.html' %} {% load staticfiles %} {% block title %} Wedding | Phước Nghĩa & Mỹ Linh {% endblock %} {% block content %}
 
 
-{% block content %}
+<!-- PAGE TITLE SMALL -->
+<div class="wed_page_title wed_page_title_great wed_image_bck wed_fixed wed_wht_txt" data-stellar-background-ratio="0.2" data-image="{{about.image.url}}">
 
 
-    <!-- PAGE TITLE SMALL -->
-    <div class="wed_page_title wed_page_title_great wed_image_bck wed_fixed wed_wht_txt" data-stellar-background-ratio="0.2" data-image="{{about.image.url}}">
+    <!-- Over -->
+    <div class="wed_over" data-color="#000" data-opacity="0.3"></div>
 
-
-      <!-- Over -->
-      <div class="wed_over" data-color="#000" data-opacity="0.3"></div>
-
-      <div class="container text-left">
+    <div class="container text-left">
         <div class="row">
-          
-          <div class="col-md-8">
-            <h1 class="wed_h1_title">{{about.name}}</h1>
-            <h3>Some Subtitle</h3>
-          </div>
-          
-          <div class="col-md-4">
-            <div class="breadcrumbs">
-              <a href="{% url 'mystory:index'%}">Trang Chủ</a><a href="#">Thông Tin</a><span>Chú Rể</span>
+
+            <div class="col-md-8">
+                <h1 class="wed_h1_title">{{about.name}}</h1>
+                <h3>Some Subtitle</h3>
             </div>
-          </div>
-          
+
+            <div class="col-md-4">
+                <div class="breadcrumbs">
+                    <a href="{% url 'mystory:index'%}">Trang Chủ</a><a href="#">Thông Tin</a><span>Chú Rể</span>
+                </div>
+            </div>
+
         </div>
-      </div>
     </div>
+</div>
 
-    <!-- PAGE TITLE SMALL END-->
+<!-- PAGE TITLE SMALL END-->
 
-    <!-- Content -->
-    <section id="wed_content" class="wed_content">
+<!-- Content -->
+<section id="wed_content" class="wed_content">
 
-      <!-- section -->
-      <section class="wed_section_innerpage">
+    <!-- section -->
+    <section class="wed_section_innerpage">
         <div class="container wed_great_titles">
-          <div class="row">
+            <div class="row">
 
-            <div class="col-md-12 text-center">
-              <h2 class="wed_form_txt">Một Vài thông tin về tôi</h2>
+                <div class="col-md-12 text-center">
+                    <h2 class="wed_form_txt">Một Vài thông tin về tôi</h2>
+                </div>
+                {{about.decription|safe}}
+                <!-- col end -->
+                <div class="col-md-12">
+                    <div class="wed_about_social">
+                        <a href="#"><i class="ti ti-facebook"></i></a>
+                        <a href="#"><i class="ti ti-twitter-alt"></i></a>
+                        <a href="#"><i class="ti ti-google"></i></a>
+                    </div>
+                </div>
             </div>
-            {{about.decription|safe}}
-            <!-- col end -->
-            <div class="col-md-12">
-              <div class="wed_about_social">
-                  <a href="#"><i class="ti ti-facebook"></i></a>
-                  <a href="#"><i class="ti ti-twitter-alt"></i></a>
-                  <a href="#"><i class="ti ti-google"></i></a>
-              </div>
-            </div>
-          </div>
-          <!-- row end -->
+            <!-- row end -->
         </div>
         <!-- container end -->
 
-      </section>
-      <!-- section end -->
-    
+    </section>
+    <!-- section end -->
 
-      <!-- White border -->
-      {% include 'wedding/pages/footer.html' %}
-        <!-- White border end -->
-    </section>   
-    <!-- Content End -->
+
+    <!-- White border -->
+    {% include 'wedding/pages/footer.html' %}
+    <!-- White border end -->
+</section>
+<!-- Content End -->
 {% endblock %}

@@ -1,51 +1,50 @@
-{% load staticfiles  %}
+{% load staticfiles %}
 <!-- Header -->
-    <header>       
-      <nav class="wed_light_nav wed_transp_nav">
+<header>
+    <nav class="wed_light_nav wed_transp_nav">
         <div class="container">
-          <!-- couple header -->
-          <img class="wed_couple_header wed_kissing_couple animated extra" src="{% static 'images/3.png' %}" alt=""/>
-          <img class="wed_couple_header wed_white_couple animated extra" src="{% static 'images/3_white_couple.png' %}" alt=""/>
-          <!-- couple header end -->
+            <!-- couple header -->
+            <img class="wed_couple_header wed_kissing_couple animated extra" src="{% static 'images/3.png' %}" alt="" />
+            <img class="wed_couple_header wed_white_couple animated extra" src="{% static 'images/3_white_couple.png' %}" alt="" />
+            <!-- couple header end -->
 
-          <!-- Logo -->
-          <a href="{% url 'mystory:index'%}" class="wed_logo wed_logo_animation">Nghĩa & Linh</a>
+            <!-- Logo -->
+            <a href="{% url 'mystory:index'%}" class="wed_logo wed_logo_animation">Nghĩa & Linh</a>
 
-          <!-- Text Logo -->
-          <div class="wed_logo_und">Wedding</div>
+            <!-- Text Logo -->
+            <div class="wed_logo_und">Wedding</div>
 
 
-          <div class="wed_top_menu_mobile_link">
-            <i class="ti ti-menu"></i>
-          </div>
-          <!-- Top Menu -->
-          <div class="wed_top_menu_cont">
-              <ul class="wed_top_menu">
-                
-                <li class="{% if 'index' in request.resolver_match.url_name %} current {% endif %}"><a href="{% url 'mystory:index'%}">Trang Chủ</a></li>
-                
-                <li class="wed_parent {% if 'about' in request.resolver_match.url_name %} current{% endif %}"><a href="#">Thông Tin</a>
-                  <ul>
-                       <li><a href="{% url 'mystory:about_her'%}">Cô Dâu</a></li>
-                       
-                       <li><a href="{% url 'mystory:about_him'%}">Chú Rể</a></li>
-                  </ul>
-                </li>
-                
-                <li class="{% if 'gallery' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:gallery'%}">Khoảnh Khắc</a></li>
-                
-                <li class="{% if 'story' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:story'%}">Nhật Ký</a></li>
-                
-                <li class="{% if 'invitation' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:invitation'%}">Tiệc Cưới</a></li>
-                
-                <li class="{% if 'blessing' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:blessing'%}">Lời Chúc</a></li>
-              </ul>
-          </div>
-          <!-- Top Menu End -->
+            <div class="wed_top_menu_mobile_link">
+                <i class="ti ti-menu"></i>
+            </div>
+            <!-- Top Menu -->
+            <div class="wed_top_menu_cont">
+                <ul class="wed_top_menu">
+
+                    <li class="{% if 'index' in request.resolver_match.url_name %} current {% endif %}"><a href="{% url 'mystory:index'%}">Trang Chủ</a></li>
+
+                    <li class="wed_parent {% if 'about' in request.resolver_match.url_name %} current{% endif %}"><a href="#">Thông Tin</a>
+                        <ul>
+                            <li><a href="{% url 'mystory:about_her'%}">Cô Dâu</a></li>
+
+                            <li><a href="{% url 'mystory:about_him'%}">Chú Rể</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="{% if 'gallery' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:gallery'%}">Khoảnh Khắc</a></li>
+
+                    <li class="{% if 'story' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:story'%}">Nhật Ký</a></li>
+
+                    <li class="{% if 'invitation' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:invitation'%}">Tiệc Cưới</a></li>
+
+                    <li class="{% if 'blessing' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:blessing'%}">Lời Chúc</a></li>
+                </ul>
+            </div>
+            <!-- Top Menu End -->
         </div>
         <!-- container end -->
-      </nav>
+    </nav>
 
-    </header>
-    <!-- Header End -->
-
+</header>
+<!-- Header End -->
