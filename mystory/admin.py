@@ -14,7 +14,7 @@ admin.site.index_title = "Welcome to ADMIN"
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
     readonly_fields = ('image_tag',)
-    list_display = ('name', 'ishusban', 'image_tag', 'code', 'user')
+    list_display = ('name', 'slug', 'ishusban', 'image_tag', 'code', 'user')
     fields = ('name', 'ishusban','image', 'code', 'decription')
     ordering = ('name',)
     search_fields = ('name', 'code', 'user')
