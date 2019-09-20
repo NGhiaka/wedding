@@ -6,12 +6,12 @@ from mystory.models import *
 
 def index(request, code=1):
 	menu = Menu.objects.get(link='trang-chu')
-	about = About.objects.all()
-	wedding = Wedding_Invitation.objects.get(code=code)
+	# about = About.objects.all()
+	weddings = Wedding_Invitation.objects.all()
 	context = {
 		'menu': menu,
-		'about':about,
-		'wedding': wedding
+		# 'about':about,
+		'weddings': weddings
 	}
 	return render(request, 'wedding/index.html', context)
 
