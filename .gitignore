@@ -1,4 +1,5 @@
 media/
 mystory/__pycache__
+mystory/migrations
 wedding/__pycache__
 **/*.pyc
