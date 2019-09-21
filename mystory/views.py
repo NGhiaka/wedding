@@ -19,46 +19,56 @@ def index(request, code=1):
 
 def About_Her(request):
 	menu = Menu.objects.get(link='co-dau')
+	musics = Music.objects.filter(menu=menu)
 	about = About.objects.get(ishusban=False)
 	context = {
 		'menu': menu,
+		'musics':musics,
 		'about':about,
 	}
 	return render(request, 'wedding/about_her.html', context)
 
 def About_Him(request):
 	menu = Menu.objects.get(link='chu-re')
+	musics = Music.objects.filter(menu=menu)
 	about = About.objects.get(ishusban=True)
 	context = {
 		'menu': menu,
+		'musics':musics,
 		'about':about,
 	}
 	return render(request, 'wedding/about_him.html',context)
 
 def Stories(request):
 	menu = Menu.objects.get(link='nhat-ky')
+	musics = Music.objects.filter(menu=menu)
 	stories = Story.objects.order_by('-uploaded_at').all()[:5]
 	context = {
 		'menu': menu,
+		'musics':musics,
 		'stories':stories,
 	}
 	return render(request, 'wedding/story.html', context)
 
 def Invitation(request):
 	menu = Menu.objects.get(link='tiec-cuoi')
+	musics = Music.objects.filter(menu=menu)
 	invitations = Wedding_Invitation.objects.all()
 	context = {
 		'menu': menu,
+		'musics':musics,
 		'invitations':invitations,
 	}
 	return render(request, 'wedding/invitation.html', context)
 
 def Galleries(request):
 	menu = Menu.objects.get(link='khoanh-khac')
-	galleries = Gallery.objects.order_by('-uploaded_at').all()[:5]
-	images = Image.objects.order_by('-uploaded_at').all()[:30]
+	musics = Music.objects.filter(menu=menu)
+	galleries = Gallery.objects.order_by('-uploaded_at').all()[:10]
+	images = Image.objects.order_by('-uploaded_at').all()[:50]
 	context = {
 		'menu': menu,
+		'musics':musics,
 		'galleries':galleries,
 		'images':images
 	}
@@ -68,18 +78,22 @@ def Galleries(request):
 # 	return render(request, 'wedding/story.html')
 
 def Blessings(request):
-	
+	msg = None
 	if request.method == 'POST':
 		form = BlessingForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect('/loi-chuc/')
+			msg = "Cảm ơn bạn đã bỏ chút thời gian để dành những lời chúc tốt đẹp dành cho cô dâu-chú rể!"
+			# return redirect('/loi-chuc/')
 	form = BlessingForm()
 	menu = Menu.objects.get(link='loi-chuc')
-	blessings = Blessing.objects.all() 
+	musics = Music.objects.filter(menu=menu)
+	blessings = Blessing.objects.order_by('-uploaded_at').all()[:20] 
 	context = {
 		'menu': menu,
+		'musics':musics,
 		'blessings':blessings,
+		'msg': msg,
 		'form': form
 	}
 

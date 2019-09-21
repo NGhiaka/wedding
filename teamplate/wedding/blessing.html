@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% load staticfiles %} {% block title %} Wedding | Phước Nghĩa & Mỹ Linh {% endblock %} {% block content %}
 
 
+
+
 <!-- PAGE TITLE SMALL -->
 <div class="wed_page_title wed_page_title_great wed_image_bck wed_fixed wed_wht_txt" data-stellar-background-ratio="0.2" data-image="{{menu.background.url}}">
 
@@ -14,7 +16,7 @@
 
             <div class="col-md-8">
                 <h1 class="wed_h1_title">Lời Chúc</h1>
-                <h3>Some Subtitle</h3>
+                <h4>Dành những lời tốt đẹp cho đôi bạn trẻ</h4>
             </div>
 
             <div class="col-md-4">
@@ -33,20 +35,8 @@
 <section id="wed_content" class="wed_content">
 
     <!-- section -->
-    <section class="wed_section_innerpage">
-        <div class="container wed_great_titles">
-            <div class="blessing">
-                <div class="blessing-title"><span>Nghĩa Lê</span>-<span>Bạn</span></div>
-                <div class="blessing-content">Chém gió quá bạn ơi</div>
-            </div>
-
-            <!-- col end -->
-        </div>
-        <!-- row end -->
-        </div>
-        <!-- container end -->
-    </section>
-
+  
+       
     <!-- section -->
     <section class="wed_section_innerpage">
         <div class="container text-center  wed_great_titles">
@@ -85,8 +75,92 @@
 
     </section>
     <!-- section end -->
+    {%if msg%}
+      <!-- White border -->
+      <div class="wed_white_inner_border">
+        <!-- section -->
+        <section class="wed_section_inner wed_image_bck wed_fixed" data-stellar-background-ratio="0.2" data-image="{{menu.background.url}}" >
+          <!-- Over -->
+          <!-- <div class="wed_over" data-color="rgb(62, 54, 187)" data-opacity="0.7"></div> -->
+          <div class="wed_over" data-color="rgb(62, 54, 187)" data-opacity="0.9" data-blend="screen"></div>
 
+          <div class="container">
+            <div class="row wed_auto_height wed_middle_titles">
+              <div class="col-md-12 wed_image_bck wed_fixed" >
+                  <h2>{{msg}}</h2>                    
+              </div>
+              <!-- col end -->
+            </div>
+            <!-- row end -->
+          </div>          
+          <!-- container end -->
 
+        </section>
+        <!-- section end -->
+      </div>      
+      <!-- White border end-->
+
+    {%endif%}
+    <!-- story section -->
+      <section id="story" class="wed_section_outter wed_wht_txt" style="color: #343434;">
+
+        <div class="container">             
+          <div class="row">
+
+              <div class="col-sm-12 col-md-offset-2 col-md-8 text-center">
+                  <div class="wed_topstory_titile wed_great_titles">
+                      <h2 class= "wed_without_after">
+                         Những Lời Chúc
+                      </h2>
+                  </div>
+              </div>
+          </div>
+          <!-- Row end -->
+
+          <!-- animation -->
+              
+            {%if blessings%}
+              {%for blessing in blessings %}
+                {% if forloop.counter|divisibleby:2 %}
+                  <div class="col-md-2 hidden-sm hidden-xs text-center">   
+                    <div class="wed_story_center">
+                      <div class="wed_story_content">
+                        <div class="wed_heart_container">
+                          <img class="wed_heart_1" src="{%static 'images/small_people/heart_3.png'%}" alt="">
+                          <img class="wed_heart_2" src="{%static 'images/small_people/heart_2.png'%}" alt="">
+                        </div>
+                        <div class="wed_story_small_img">
+                          <img src="{%static 'images/small_people/couple_1.png'%}" alt="">
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                {%else%}
+                  <div data-animation="animation_blocks" data-bottom="@class:noactive" data--10-bottom="@class:active">  
+                      <div class="row wed_story_row">
+                {% endif %}
+                <div class="col-sm-12 col-md-5 wed_bd {% cycle 'text-right' 'text-left' %}">
+                  <div class="wed_story_txt">
+                    <h4>{{blessing.name}} - {{blessing.relation}}</h4>
+                    <div class="wed_month_year">{{blessing.uploaded_at|date:"d-m-Y"}}</div>
+                    <p>{{blessing.blessing}}</p> 
+
+                  </div>                           
+                </div>    
+                {% if forloop.counter|divisibleby:2 %}
+                  <div class="wed_vertical_line wed_line_top hidden-sm hidden-xs"></div></div></div>
+                {% endif %}
+
+              {%endfor%}
+            {%endif%}
+          </div>
+            <!-- Animation End -->
+        </div>
+        <!-- END of CONTAINER -->
+
+      </section> 
+        <!-- Section end -->
     <!-- White border -->
     {% include 'wedding/pages/footer.html' %}
     <!-- White border end -->
