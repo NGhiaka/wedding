@@ -1,2 +1,7 @@
 https://github.com/douglasmiranda/django-admin-bootstrap
 https://github.com/jaap3/django-richtextfield
+
+Thau thế đường dẫn trong file min.js
+b.src="/images/petals/"+c+"/realLeaf"+randomInteger(1,5)+".png"
+thành
+b.src="/static/images/petals/"+c+"/realLeaf"+randomInteger(1,5)+".png"

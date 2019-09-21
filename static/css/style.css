@@ -9,7 +9,9 @@ a{
     font-weight: bold;
     color: #7949c8;
 }
-
+.wed_story_center{
+	height: 200px;
+}
 .groom {
     /*position: absolute;
     left: 40px;*/

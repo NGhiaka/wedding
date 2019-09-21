@@ -64,8 +64,8 @@ def Invitation(request):
 def Galleries(request):
 	menu = Menu.objects.get(link='khoanh-khac')
 	musics = Music.objects.filter(menu=menu)
-	galleries = Gallery.objects.order_by('-uploaded_at').all()[:5]
-	images = Image.objects.order_by('-uploaded_at').all()[:30]
+	galleries = Gallery.objects.order_by('-uploaded_at').all()[:10]
+	images = Image.objects.order_by('-uploaded_at').all()[:50]
 	context = {
 		'menu': menu,
 		'musics':musics,
@@ -78,20 +78,22 @@ def Galleries(request):
 # 	return render(request, 'wedding/story.html')
 
 def Blessings(request):
-	
+	msg = None
 	if request.method == 'POST':
 		form = BlessingForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect('/loi-chuc/')
+			msg = "Cảm ơn bạn đã bỏ chút thời gian để dành những lời chúc tốt đẹp dành cho cô dâu-chú rể!"
+			# return redirect('/loi-chuc/')
 	form = BlessingForm()
 	menu = Menu.objects.get(link='loi-chuc')
 	musics = Music.objects.filter(menu=menu)
-	blessings = Blessing.objects.all() 
+	blessings = Blessing.objects.order_by('-uploaded_at').all()[:20] 
 	context = {
 		'menu': menu,
 		'musics':musics,
 		'blessings':blessings,
+		'msg': msg,
 		'form': form
 	}
 
