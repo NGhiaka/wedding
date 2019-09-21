@@ -37,7 +37,7 @@ class ImageInline(admin.TabularInline):
 
 @admin.register(Gallery)
 class GalleryAdmin(admin.ModelAdmin):
-    fields = ('title', 'short_content' )
+    fields = ('title', 'decription' )
     ordering = ('title',)
     search_fields = ('title',)
     inlines = [
