@@ -82,19 +82,24 @@
                           {%endfor%}
                           <div class="row invitation">
                               {%for wedding in weddings%}
-                              <div class="colum-3 colum-s-12 {{wedding.code.ishusban|yesno:'groom,bride' }}">
-                                <span class="position">{{wedding.code}}</span> {{wedding.code.name}}
-                              </div>
+                                {% if forloop.counter|divisibleby:2 %}
+                                  <div style="display:inline">&</div>
+                                {%endif%}
+                                <div class="colum-3 colum-s-12 {{wedding.code.ishusban|yesno:'groom,bride' }}">
+                                  <span class="position">{{wedding.code}}</span> {{wedding.code.name}}
+                                </div>
                               {% endfor%}
                           </div>
                           {% if weddings%} {%for wedding in weddings%}
                           <div class="invitation-panel-content {{wedding.code.slug}}">
-                              <p> <span class="position"><strong>Được Tổ Chức</strong></span><br>
+                              <p><br>
+                                <span class="position"><strong>Được Tổ Chức</strong></span><br>
                                   <span class="position">Tại</span> <strong>{{wedding.location}}.</strong><br>
                                   <span class="position">Vào lúc</span> <strong>{{wedding.time_calendar|date:"H:i"}}</strong>
                                   <span class="position">Ngày </span> <strong>{{wedding.time_calendar|date:"d-m-Y"}}</strong>
                                   <span class="position">dương Lịch</span><br>
-                                  <span class="position">Nhằm ngày </span><strong>{{wedding.time_lunar|date:"d-m-Y"}}</strong> <span class="position">âm Lịch </span><br></p>
+                                  <span class="position">Nhằm ngày </span><strong>{{wedding.time_lunar|date:"d-m-Y"}}</strong> <span class="position">âm Lịch </span><br>
+                                </p>
                           </div>
                           {%endfor%} {% endif%}
                           <a href="{% url 'mystory:blessing'%}" class="btn btn_new">Gửi Lời Chúc</a>
@@ -112,7 +117,7 @@
     <!-- White border -->
     <div class="wed_white_inner_border">
         <!-- section -->
-        <section class="wed_section_inner wed_image_bck wed_wht_txt wed_fixed" data-stellar-background-ratio="0.2" data-image="{{menu.image.url}}">
+        <section class="wed_section_inner wed_image_bck wed_wht_txt wed_fixed" data-stellar-background-ratio="0.2" data-image="{{menu.background.url}}">
             <!-- Over -->
             <div class="wed_over" data-color="#8630fc" data-opacity="0.9"></div>
             <div class="wed_over" data-color="#000" data-opacity="0.1"></div>
@@ -129,6 +134,8 @@
                 <div class="invitation-panel-content {{wedding.code.slug}}" %}>
                     <span class="wed_countdown" data-year="{{wedding.time_calendar|date:" Y "}}" data-month="{{wedding.time_calendar|date:" m "}}" data-day="{{wedding.time_calendar|date:" d "}}" data-hour="17"></span>
                 </div>
+
+                 
                 {%endfor%} {% endif%}
 
             </div>
