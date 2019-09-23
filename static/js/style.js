@@ -19,6 +19,8 @@ var Invitation = function() {
 
         $(".invitation-panel-content").hide();
         $("."+class_active).show();
+        countdown(class_active);
+
     };
     var countdown = function(id) {
         var _datetime = $("#wed_countdown_"+id).data("datetime");
