@@ -130,13 +130,9 @@
                 </div>
                 <!-- row end -->
                 {% if weddings%} {%for wedding in weddings%}
-                <div class="invitation-panel-content {{wedding.code.slug}}">
-                    <span class="wed_countdown" data-year="{{wedding.time_calendar|date:" Y "}}" data-month="{{wedding.time_calendar|date:" m "}}" data-day="{{wedding.time_calendar|date:" d "}}"></span>
-                </div>
-
-                <div class="invitation-panel-content {{wedding.code.slug}}">
-                    <span class="wed_countdown" data-datetime="{{wedding.time_calendar|date:" Y/m/j G:i:s "}}" id="wed_countdown_datetime"></span>
-                </div>
+                    <div class="invitation-panel-content {{wedding.code.slug}}">
+                        <span class="wed_countdown" data-datetime="{{wedding.time_calendar|date:" Y/m/j G:i:s "}}" id="wed_countdown_datetime"></span>
+                    </div>
                 {%endfor%} {% endif%}
 
             </div>
