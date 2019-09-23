@@ -145,7 +145,7 @@ class Blessing(models.Model):
     blessing: lời chúc
     """
     name = models.CharField(max_length=100, blank = True, verbose_name='Tên khác mời', default='')
-    relation = models.CharField(max_length=100, null=True, blank=True, verbose_name='Mối quan hệ', default='')
+    relation = models.CharField(max_length=100, null=True, blank=True, verbose_name='Mối quan hệ')
     blessing = models.TextField(max_length=2000, blank = True, verbose_name='Lời chúc', default='')
     uploaded_at = models.DateTimeField(auto_now_add=True)   
 
