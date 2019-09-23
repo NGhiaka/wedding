@@ -9,7 +9,7 @@ def index(request, code=1):
 	menu = Menu.objects.get(link='trang-chu')
 	musics = Music.objects.filter(menu=menu)
 	# about = About.objects.all()
-	weddings = Wedding_Invitation.objects.all()
+	weddings = Wedding_Invitation.objects.order_by("-id").all()
 	context = {
 		'menu': menu,
 		'musics':musics,

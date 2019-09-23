@@ -48,7 +48,7 @@
                 <!-- filters -->
                 <div class="button-group filter-button-group invitation-panel-tag">
                     {% if weddings%} {%for wedding in weddings%}
-                    <a data-filter=".{{wedding.code.slug}}" class="{% cycle 'active' '' %}">Nhà {{wedding.code}}</a> {%endfor%} {% endif%}
+                    <a data-filter="{{wedding.code.slug}}" class="{% cycle 'active' '' %}">Nhà {{wedding.code}}</a> {%endfor%} {% endif%}
                 </div>
                 <!-- filters end -->
 
@@ -131,7 +131,7 @@
                 <!-- row end -->
                 {% if weddings%} {%for wedding in weddings%}
                     <div class="invitation-panel-content {{wedding.code.slug}}">
-                        <span class="wed_countdown" data-datetime="{{wedding.time_calendar|date:" Y/m/j G:i:s "}}" id="wed_countdown_datetime"></span>
+                        <span class="wed_countdown" data-datetime="{{wedding.time_calendar|date:" Y/m/j G:i:s "}}" id="wed_countdown_{{wedding.code.slug}}"></span>
                     </div>
                 {%endfor%} {% endif%}
 

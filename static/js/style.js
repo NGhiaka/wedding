@@ -9,16 +9,19 @@ $(".invitation-panel-tag a").click(function() {
 var Invitation = function() {
     var construct = function() {
         var class_active = $(".invitation-panel-tag a.active").data("filter");
-        $(class_active).show();
+        countdown(class_active);
+        $("."+class_active).show();
     };
     var click_tab = function(element) {
         var class_active = $(element).data("filter");
+        $(".invitation-panel-tag a").removeClass('active');
+        $(element).addClass('active');
+
         $(".invitation-panel-content").hide();
-        $(class_active).show();
+        $("."+class_active).show();
     };
-    var countdown = function() {
-        var _datetime = $("#wed_countdown_datetime").data("datetime");
-        
+    var countdown = function(id) {
+        var _datetime = $("#wed_countdown_"+id).data("datetime");
         var countDownDate = new Date(_datetime).getTime()
 
         var date = new Date(countDownDate);
@@ -56,7 +59,7 @@ var Invitation = function() {
                 </span>
             </span>`;
 
-            $("#wed_countdown_datetime").html(_htmltag);
+            $("#wed_countdown_"+id).html(_htmltag);
             // If the count down is finished, write some text
             if (distance < 0) {
                 clearInterval(x);
@@ -67,7 +70,7 @@ var Invitation = function() {
     return {
         init: function() {
             construct();
-            countdown();
+            
         },
         action: function(param) {
             click_tab(param);
