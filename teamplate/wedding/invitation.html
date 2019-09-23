@@ -36,11 +36,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 wed_event_hours">
-                    <h3>Thông Tin</h3>
                     {% if invitations%} {%for wedding in invitations%}
-                    <h4>{{wedding.feast}} - {{wedding.time_calendar|date:"D"}}</h4>
-                    <h4>{{wedding.time_calendar|date:"H:i"}} – {{wedding.time_calendar|date:"d-m-Y"}}</h4>
-                    <b>{{wedding.location}}</b><br> {%endfor%} {%endif%}
+                        {% if forloop.counter|divisibleby:2 %}
+                            <br><img src="{% static 'images/arrows_bottom_400.png'%}" alt="">
+                        {%endif%}
+                        <h4>{{wedding.feast}} - {{wedding.time_calendar|date:"l"}}</h4>
+                        <h4>{{wedding.time_calendar|date:"H:i"}} – {{wedding.time_calendar|date:"d-m-Y"}}</h4>
+                        <b>{{wedding.location}}</b><br>
+
+                    {%endfor%} {%endif%}
                 </div>
                 <div class="col-md-6 hidden-sm hidden-xs">
                     <img src="{{menu.background.url}}" alt="">
@@ -51,40 +55,59 @@
         <!-- Container End -->
     </section>
     <!-- section -->
-    {% if invitations%} {%for wedding in invitations%}
+    
     <section class="wed_section_innerpage">
         <div class="containter">
             <div class="row wed_inside_map">
-                <div class="col-md-12">
+                {% if invitations%} 
+                    {%for wedding in invitations%}
+                        {% if forloop.counter|divisibleby:2 %}
+                          <div class="col-md-2 hidden-sm hidden-xs text-center">   
+                            <div class="wed_story_center">
+                              <div class="wed_story_content">
+                                <div class="wed_heart_container">
+                                  <img class="wed_heart_1" src="{%static 'images/small_people/heart_3.png'%}" alt="">
+                                  <img class="wed_heart_2" src="{%static 'images/small_people/heart_2.png'%}" alt="">
+                                </div>
+                                <div class="wed_story_small_img">
+                                  <img src="{%static 'images/small_people/couple_1.png'%}" alt="">
+                                </div>
 
-                    <!-- over -->
-                    <div class="wed_map_over text-center wed_wht_txt">
-                        <div class="wed_map_txt wed_icon_box">
-                            <img class="wed_small_img" src="images/small_people/rising_heart.png" alt="">
-                            <div class="wed_icon_box_content">
-                                <h4><b>Xem bản đồ nhà {{wedding.code}}</b></h4>
+                              </div>
                             </div>
+                          </div>
+                        {%endif%}
+                        <div class="col-md-5">
+                            <!-- over -->
+                            <div class="wed_map_over text-center wed_wht_txt">
+                                <div class="wed_map_txt wed_icon_box">
+                                    <img class="wed_small_img" src="images/small_people/rising_heart.png" alt="">
+                                    <div class="wed_icon_box_content">
+                                        <h4><b>Xem bản đồ nhà {{wedding.code}}</b></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- over end -->
+
+                            <!-- over -->
+                            <div class="wed_over" data-color="rgb(145, 74, 242)" data-opacity="0.9"></div>
+
+                            <!-- map -->
+                            <div id="map" class="wed_map">
+                                {{wedding.gmap|safe}}
+                            </div>
+                            <!-- map end -->
+
                         </div>
-                    </div>
-                    <!-- over end -->
-
-                    <!-- over -->
-                    <div class="wed_over" data-color="rgb(145, 74, 242)" data-opacity="0.9"></div>
-
-                    <!-- map -->
-                    <div id="map" class="wed_map">
-                        <iframe src="{{wedding.gmap}}" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-                    </div>
-                    <!-- map end -->
-
-                </div>
+                    {%endfor%} 
+                {%endif%}
             </div>
         </div>
         <!-- container end -->
 
     </section>
     <!-- section end -->
-    {%endfor%} {%endif%}
+    
 </section>
 <!-- section end -->
 
