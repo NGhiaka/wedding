@@ -25,7 +25,7 @@ SECRET_KEY = 'h5oj_x(*+2ix*wo6f6znp=ojf-1^+8moesfdy3%$ubm4g_n-l3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS =  ["localhost", "0.0.0.0", "10.42.53.218"]
 
 
 # Application definition
@@ -84,8 +84,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'wedding_development',
-        'USER': 'postgres',
-        'PASSWORD': '12345678x@X',
+        'USER': 'car',
+        'PASSWORD': '1197614',
         'HOST': 'localhost',
         'PORT': '5432',
     }
