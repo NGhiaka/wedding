@@ -82,7 +82,7 @@
                         {%endfor%}
                         <div class="row invitation">
                             {%for wedding in weddings%} {% if forloop.counter|divisibleby:2 %}
-                            <div style="display:inline">&</div>
+                                <div style="display:inline">&</div>
                             {%endif%}
                             <div class="colum-3 colum-s-12 {{wedding.code.ishusban|yesno:'groom,bride' }}">
                                 <span class="position">{{wedding.code}}</span> {{wedding.code.name}}

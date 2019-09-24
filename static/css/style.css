@@ -65,14 +65,15 @@ a{
 	height: 200px;
 }
 .groom {
-    /*position: absolute;
-    left: 40px;*/
+    position: absolute;
+    left: 25%;
     display: inline-grid;
+
 }
 
 .bride {
-    /*position: absolute;
-    right: 40px;*/
+    position: absolute;
+    right: 25%;
     display: inline-grid;
 }
 
