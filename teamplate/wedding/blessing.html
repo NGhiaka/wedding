@@ -121,7 +121,19 @@
               
             {%if blessings%}
               {%for blessing in blessings %}
-                {% if forloop.counter|divisibleby:2 %}
+                {% if forloop.counter0|divisibleby:2 %}
+                  <div data-animation="animation_blocks" data-bottom="@class:noactive" data--10-bottom="@class:active">  
+                      <div class="row wed_story_row">
+                {% endif %}
+                <div class="col-sm-12 col-md-5 wed_bd {% cycle 'text-right' 'text-left' %}">
+                  <div class="wed_story_txt">
+                    <h4>{{blessing.name}} - {{blessing.relation}}</h4>
+                    <div class="wed_month_year">{{blessing.uploaded_at|date:"d-m-Y"}}</div>
+                    <p>{{blessing.blessing}}</p> 
+
+                  </div>                           
+                </div>    
+                {% if forloop.counter0|divisibleby:2 %}
                   <div class="col-md-2 hidden-sm hidden-xs text-center">   
                     <div class="wed_story_center">
                       <div class="wed_story_content">
@@ -137,21 +149,10 @@
                     </div>
                   </div>
                 {%else%}
-                  <div data-animation="animation_blocks" data-bottom="@class:noactive" data--10-bottom="@class:active">  
-                      <div class="row wed_story_row">
+                    <div class="wed_vertical_line wed_line_top hidden-sm hidden-xs"></div></div></div>
                 {% endif %}
-                <div class="col-sm-12 col-md-5 wed_bd {% cycle 'text-right' 'text-left' %}">
-                  <div class="wed_story_txt">
-                    <h4>{{blessing.name}} - {{blessing.relation}}</h4>
-                    <div class="wed_month_year">{{blessing.uploaded_at|date:"d-m-Y"}}</div>
-                    <p>{{blessing.blessing}}</p> 
-
-                  </div>                           
-                </div>    
-                {% if forloop.counter|divisibleby:2 %}
-                  <div class="wed_vertical_line wed_line_top hidden-sm hidden-xs"></div></div></div>
-                {% endif %}
-
+                
+                
               {%endfor%}
             {%endif%}
           </div>
