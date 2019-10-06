@@ -26,6 +26,8 @@
 
                     <li class="{% if 'index' in request.resolver_match.url_name %} current {% endif %}"><a href="{% url 'mystory:index'%}">Trang Chủ</a></li>
 
+                    <li class="{% if 'invitation' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:invitation'%}">Thiệp Cưới</a></li>
+
                     <li class="wed_parent {% if 'about' in request.resolver_match.url_name %} current{% endif %}"><a href="#">Thông Tin</a>
                         <ul>
                             <li><a href="{% url 'mystory:about_her'%}">Cô Dâu</a></li>
@@ -38,7 +40,7 @@
 
                     <li class="{% if 'story' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:story'%}">Nhật Ký</a></li>
 
-                    <li class="{% if 'invitation' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:invitation'%}">Tiệc Cưới</a></li>
+                    
 
                     <li class="{% if 'blessing' in request.resolver_match.url_name %} current{% endif %}"><a href="{% url 'mystory:blessing'%}">Lời Chúc</a></li>
                 </ul>

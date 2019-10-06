@@ -48,21 +48,31 @@
 
             <!-- grid -->
             <div class="wed_portfolio grid">
-                {% if images%} {%for image in images%}
-                <!-- item -->
-                <div class="col-sm-4 wed_portfolio_item grid-item {{image.gallery.slug}}">
-                    <div class="wed_portfolio_item_cont">
-                        <img src="{{image.path_img.url}}" alt="">
-                        <span class="wed_port_titles">
-                      <span class="wed_port_title">{{image.name}}</span>
-                        <span class="wed_port_icons">
-                        <a href="#"><i class="ti ti-link"></i></a>
-                        <a href="{{image.path_img.url}}" class="lightbox"><i class="ti ti-search"></i></a>
-                      </span>
-                        </span>
+                {% if images%} 
+                    <div class="infinite-container">
+                        {%for image in images%}
+                        <!-- item -->
+                        <div class="col-sm-4 wed_portfolio_item grid-item {{image.gallery.slug}} infinite-item">
+                            <div class="wed_portfolio_item_cont">
+                                <img src="{{image.path_img.url}}" alt="">
+                                <span class="wed_port_titles">
+                              <span class="wed_port_title">{{image.name}}</span>
+                                <span class="wed_port_icons">
+                                <a href="#"><i class="ti ti-link"></i></a>
+                                <a href="{{image.path_img.url}}" class="lightbox"><i class="ti ti-search"></i></a>
+                              </span>
+                                </span>
+                            </div>
+                        </div>
+                        {%endfor%} 
                     </div>
-                </div>
-                {%endfor%} {% endif%}
+                    {% if images.has_next %}
+                        <a class="infinite-more-link" href="?page={{ images.next_page_number }}"></a>
+                    {% endif %}
+                    <div class="loading" style="display: none;">
+                        Loading...
+                    </div>
+                {% endif%}
 
             </div>
             <!-- grid end -->

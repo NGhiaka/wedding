@@ -81,6 +81,52 @@ var Invitation = function() {
 }();
 
 
+var infinite = new Waypoint.Infinite({
+    element: $('.infinite-container')[0],
+    onBeforePageLoad: function () {
+        $('.infinite-container').addClass('fade-up-active');
+
+        $('.loading').show();
+    },
+    onAfterPageLoad: function (items) {
+        var strhtml = '';
+        $.each( items, function( key, value ) {
+            if (key%2==0){
+                strhtml = 
+                `<div data-animation="animation_blocks" data-bottom="@class:noactive" data--10-bottom="@class:active">  
+                    <div class="row wed_story_row">` + value + 
+                        `<div class="col-md-2 hidden-sm hidden-xs text-center">   
+                            <div class="wed_story_center">
+                                <div class="wed_story_content">
+                                    <div class="wed_heart_container">
+                                        <img class="wed_heart_1" src="'../images/small_people/heart_3.png'%}" alt="">
+                                        <img class="wed_heart_2" src="'../images/small_people/heart_2.png'%}" alt="">
+                                    </div>
+                                    <div class="wed_story_small_img">
+                                        <img src="'../images/small_people/couple_1.png'%}" alt="">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>`;
+            }
+            else{
+                strhtml += value + '<div class="wed_vertical_line wed_line_top hidden-sm hidden-xs"></div></div></div>';
+                $(this).appendChild(strhtml);
+                strhtml = '';
+            }
+                        
+                    
+
+            console.log( key  );
+            console.log( value  );
+        });
+        $('.loading').hide();
+    },
+    
+});
+
+
 var Music = function() {
     var init = function() {
 

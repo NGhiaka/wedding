@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import cloudinary
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'h5oj_x(*+2ix*wo6f6znp=ojf-1^+8moesfdy3%$ubm4g_n-l3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS =  ["localhost", "0.0.0.0", "10.42.53.218"]
 
@@ -39,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djrichtextfield'
+    'djrichtextfield',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -136,6 +139,7 @@ STATICFILES_DIRS = (
     ('js' , os.path.join(STATIC_ROOT, 'js')),
     ('images' , os.path.join(STATIC_ROOT, 'images')),
     ('fonts' , os.path.join(STATIC_ROOT, 'fonts')),
+    ('font-awesome' , os.path.join(STATIC_ROOT, 'font-awesome')),
 )
 
 DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
@@ -143,8 +147,9 @@ DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
 LOGIN_URL = '/admin/login'
 LOGIN_REDIRECT_URL = '/admin'
 LOGOUT_REDIRECT_URL = '/admin/login'
-MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # UPLOAD HANDLE
 FILE_UPLOAD_HANDLERS = [
@@ -193,7 +198,11 @@ DJRICHTEXTFIELD_CONFIG = {
 #         'width': 700
 #     }
 # }
-
+cloudinary.config( 
+  cloud_name = "weddingnow", 
+  api_key = "588829699121819", 
+  api_secret = "umEj0BJRJ6XMaHBqDYvE4B-9gpg" 
+)
 # security 
 SECURE_HSTS_SECONDS = 1
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True

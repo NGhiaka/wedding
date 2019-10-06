@@ -31,49 +31,64 @@
 
 <!-- Content -->
 <section id="wed_content" class="wed_content">
-    {% if stories%} {%for story in stories%}
+    {% if stories%} 
 
-    <!-- section -->
-    <section class="wed_section_innerpage">
-        <div class="container wed_great_titles">
-            <div class="row">
+        <div class="infinite-container">
+       
+            {%for story in stories%}
+                <div class="infinite-item">
+                    <!-- section -->
+                    <section class="wed_section_innerpage">
+                        <div class="container wed_great_titles">
+                            <div class="row">
 
-                <div class="col-md-12 text-center">
-                    <h2 class="wed_form_txt">{{story.title}}</h2>
-                </div>
-                {{story.content|safe}}
-                <!-- col end -->
-            </div>
-            <!-- row end -->
-        </div>
-        <!-- container end -->
-    </section>
-    <!-- section end -->
-    {%if story.feeling%}
-    <!-- White border -->
-    <div class="wed_white_inner_border">
+                                <div class="col-md-12 text-center">
+                                    <h2 class="wed_form_txt">{{story.title}}</h2>
+                                </div>
+                                {{story.content|safe}}
+                                <!-- col end -->
+                            </div>
+                            <!-- row end -->
+                        </div>
+                        <!-- container end -->
+                    </section>
+                    <!-- section end -->
+                    {%if story.feeling%}
+                    <!-- White border -->
+                    <div class="wed_white_inner_border">
 
-        <!-- section -->
-        <section class="wed_section_inner wed_image_bck wed_wht_txt wed_fixed wed_border" data-stellar-background-ratio="0.2" data-image="{{story.images.url}}">
-            <!-- Over -->
-            <div class="wed_over" data-color="rgb(129, 60, 224)" data-opacity="0.9"></div>
+                        <!-- section -->
+                        <section class="wed_section_inner wed_image_bck wed_wht_txt wed_fixed wed_border" data-stellar-background-ratio="0.2" data-image="{{story.images.url}}">
+                            <!-- Over -->
+                            <div class="wed_over" data-color="rgb(129, 60, 224)" data-opacity="0.9"></div>
 
-            <div class="container">
-                <div class="row wed_thin_titles">
-                    <div class="col-md-12 text-center">
-                        <h2>{{story.feeling}}</h2>
+                            <div class="container">
+                                <div class="row wed_thin_titles">
+                                    <div class="col-md-12 text-center">
+                                        <h2>{{story.feeling}}</h2>
+                                    </div>
+                                    <!-- col end -->
+                                </div>
+                                <!-- row end -->
+                            </div>
+                            <!-- container end -->
+
+                        </section>
+                        <!-- section end -->
                     </div>
-                    <!-- col end -->
+                    <!-- White border end-->
+                    {%endif%} 
                 </div>
-                <!-- row end -->
-            </div>
-            <!-- container end -->
 
-        </section>
-        <!-- section end -->
-    </div>
-    <!-- White border end-->
-    {%endif%} {%endfor%} {%endif%}
+            {%endfor%} 
+        </div>
+        {% if stories.has_next %}
+            <a class="infinite-more-link" href="?page={{ stories.next_page_number }}"></a>
+        {% endif %}
+        <div class="loading" style="display: none;">
+            Loading...
+        </div>
+    {%endif%}
 
     <!-- White border -->
     {% include 'wedding/pages/footer.html' %}

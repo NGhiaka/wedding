@@ -87,7 +87,7 @@
           <div class="container">
             <div class="row wed_auto_height wed_middle_titles">
               <div class="col-md-12 wed_image_bck wed_fixed" >
-                  <h2>{{msg}}</h2>                    
+                  <h2 style="text-align: center;">{{msg}}</h2>                    
               </div>
               <!-- col end -->
             </div>
@@ -120,40 +120,58 @@
           <!-- animation -->
               
             {%if blessings%}
-              {%for blessing in blessings %}
-                {% if forloop.counter0|divisibleby:2 %}
-                  <div data-animation="animation_blocks" data-bottom="@class:noactive" data--10-bottom="@class:active">  
-                      <div class="row wed_story_row">
-                {% endif %}
-                <div class="col-sm-12 col-md-5 wed_bd {% cycle 'text-right' 'text-left' %}">
-                  <div class="wed_story_txt">
-                    <h4>{{blessing.name}} - {{blessing.relation}}</h4>
-                    <div class="wed_month_year">{{blessing.uploaded_at|date:"d-m-Y"}}</div>
-                    <p>{{blessing.blessing}}</p> 
+              <div class="infinite-container">
+                {%for blessing in blessings %}
+                    {% if forloop.counter0|divisibleby:2 %}
+                      <div data-animation="animation_blocks" data-bottom="@class:noactive" data--10-bottom="@class:active">  
+                        <div class="row wed_story_row">
+                    {% endif %}
+                    <div class="col-sm-12 col-md-5 wed_bd {% cycle 'text-right' 'text-left' %} infinite-item">
+                      <div class="wed_story_txt">
+                        <h4>{{blessing.name}} - {{blessing.relation}}</h4>
+                        <div class="wed_month_year">{{blessing.uploaded_at|date:"d-m-Y"}}</div>
+                        <p>{{blessing.blessing}}</p> 
 
-                  </div>                           
-                </div>    
-                {% if forloop.counter0|divisibleby:2 %}
-                  <div class="col-md-2 hidden-sm hidden-xs text-center">   
+                      </div>                           
+                    </div>    
+                    {% if forloop.counter0|divisibleby:2 %}
+                      <div class="col-md-2 hidden-sm hidden-xs text-center">   
+                        <div class="wed_story_center">
+                          <div class="wed_story_content">
+                            <div class="wed_heart_container">
+                              <img class="wed_heart_1" src="{%static 'images/small_people/heart_3.png'%}" alt="">
+                              <img class="wed_heart_2" src="{%static 'images/small_people/heart_2.png'%}" alt="">
+                            </div>
+                            <div class="wed_story_small_img">
+                              <img src="{%static 'images/small_people/couple_1.png'%}" alt="">
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    {%else%}
+                        <div class="wed_vertical_line wed_line_top hidden-sm hidden-xs"></div></div></div>
+                    {% endif %}
+                {%endfor%}
+              </div>
+              {% if blessings.has_next %}
+                <a class="infinite-more-link" href="?page={{ blessings.next_page_number }}"></a>
+              {% endif %}
+              <div class="loading" style="display: none;">
+                <div class="col-md-12 hidden-sm hidden-xs text-center">   
                     <div class="wed_story_center">
                       <div class="wed_story_content">
-                        <div class="wed_heart_container">
-                          <img class="wed_heart_1" src="{%static 'images/small_people/heart_3.png'%}" alt="">
-                          <img class="wed_heart_2" src="{%static 'images/small_people/heart_2.png'%}" alt="">
+                        <div class="wed_heart_container_row_3">
+                          <img class="wed_third_heart_1" src="{%static 'images/small_people/heart_third_step_3.png' %}" alt="">
                         </div>
                         <div class="wed_story_small_img">
-                          <img src="{%static 'images/small_people/couple_1.png'%}" alt="">
+                          <img src="{%static 'images/small_people/small_couple_third.png' %}" alt="">
                         </div>
 
                       </div>
                     </div>
                   </div>
-                {%else%}
-                    <div class="wed_vertical_line wed_line_top hidden-sm hidden-xs"></div></div></div>
-                {% endif %}
-                
-                
-              {%endfor%}
+              </div>
             {%endif%}
           </div>
             <!-- Animation End -->
@@ -167,6 +185,5 @@
     <!-- White border end -->
 </section>
 <!--Content end -->
-
 
 {% endblock %}

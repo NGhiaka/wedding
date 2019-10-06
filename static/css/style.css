@@ -22,6 +22,14 @@
   font-family: 'han-viet';
   src: url(/static/fonts/fonts/UVNHanViet.TTF);
 }
+@font-face {
+  font-family: 'dinh-hon';
+  src: url(/static/fonts/fonts/UVNDinhHon.TTF);
+}
+@font-face {
+  font-family: 'nguyen-du';
+  src: url(/static/fonts/fonts/UVNNguyenDu.TTF);
+}
 body{
   font-family: 'thang-vu';
 }
@@ -52,6 +60,9 @@ h1.wed_h1_title {
 }
 a{
 	cursor: pointer;
+}
+h2:after {
+  margin: auto;
 }
 .invitation {
     position: relative;
@@ -132,4 +143,70 @@ a{
   .colum-10 {width: 83.33%;}
   .colum-11 {width: 91.66%;}
   .colum-12 {width: 100%;}
+}
+/*invitation*/
+.background-invitation{
+    background-color: #f7f7f7;
+    border-radius: 35px;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  
+}
+.wapper-invitation{
+  font-family:'nguyen-du';
+  padding: 20px 0;
+}
+.content-invitation{
+  display: inline-grid;
+  padding: 0 0 20px;
+}
+.name-parent{
+  color: #7949c8;
+  font-size: 30px;
+  padding: 5px;
+}
+.inform-invitation{
+  font-size: 25px;
+  padding: 30px 0;
+}
+.color-invitation{
+  color: #7949c8;
+  line-height: 1.5;
+}
+.information-main-people{
+  padding: 10px 0;
+}
+.name-main-people{
+  color: #7949c8;
+  font-size: 35px;
+}
+.index-main-people{
+  padding: 20px 0 0 0;
+  font-size: 20px;
+}
+.address-invitation, .time-invitation{
+  font-size: 25px;
+}
+.date-importal{
+  padding: 20px;
+  display: inline-flex;
+}
+.date-invitation{
+    border-top: 5px solid #7949c8;
+    border-bottom: 5px solid #7949c8;
+    font-size: 25px;
+    padding: 10px;
+}
+.day-invitation{
+    font-size: 80px;
+    color: #7949c8;
+    /* padding: 0px 15px; */
+    line-height: 1;
+}
+.wishes-invitation{
+    font-size: 25px;
+    padding: 5px;
+    font-style: italic;
+
 }

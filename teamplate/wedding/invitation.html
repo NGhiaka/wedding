@@ -13,13 +13,13 @@
         <div class="row">
 
             <div class="col-md-8">
-                <h1 class="wed_h1_title">Tiệc Cưới</h1>
-                <h4>Thông tin tiệc cưới</h4>
+                <h1 class="wed_h1_title">Thiệp Cưới</h1>
+                <h4>Xem thiệp cưới</h4>
             </div>
 
             <div class="col-md-4">
                 <div class="breadcrumbs">
-                    <a href="{% url 'mystory:index'%}">Trang Chủ</a><span>Tiệc Cưới</span>
+                    <a href="{% url 'mystory:index'%}">Trang Chủ</a><span>Thiệp Cưới</span>
                 </div>
             </div>
 
@@ -32,56 +32,106 @@
 <!-- Content -->
 <section id="wed_content" class="wed_content">
 
-    <section class="wed_section_inner">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 wed_event_hours">
-                    {% if invitations%} {%for wedding in invitations%}
-                        {% if forloop.counter|divisibleby:2 %}
-                            <br><img src="{% static 'images/arrows_bottom_400.png'%}" alt="">
-                        {%endif%}
-                        <h4>{{wedding.feast}} - {{wedding.time_calendar|date:"l"}}</h4>
-                        <h4>{{wedding.time_calendar|date:"H:i"}} – {{wedding.time_calendar|date:"d-m-Y"}}</h4>
-                        <b>{{wedding.location}}</b><br>
+    <!-- BORDER -->
+    <div class="wed_slider_border_zi4">
 
-                    {%endfor%} {%endif%}
+        <!-- story section -->
+        <section id="story" class="wed_section_outter wed_couple clearfix invitation-wapper">
+
+            <div class="container">
+                <div class="row">
+                    <div class="text-center">
+                        <div class="wed_topstory_titile wed_great_titles">
+                            <h2 class="wed_margtop">
+                                Happy Wedding!
+                            </h2>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 hidden-sm hidden-xs">
-                    <img src="{{menu.background.url}}" alt="">
+
+                <!-- filters -->
+                <div class="button-group filter-button-group invitation-panel-tag">
+                    {% if weddings%} {%for wedding in weddings%}
+                    <a data-filter="{{wedding.code.slug}}" class="{% cycle 'active' '' %}">Nhà {{wedding.code}}</a> {%endfor%} {% endif%}
                 </div>
+                <!-- filters end -->
+
+                <!-- Row end -->
+                {% if weddings%} 
+                    <div class="background-invitation">
+                        <img src="{% static "images/border_invitation_top.png" %}">
+                        <div class="row wapper-invitation ">
+                            {%for wedding in weddings%}
+                            <!-- Item -->
+                                <div class="colum-5 colum-s-5 text-center content-invitation">
+                                    <span class="title-parrent">Ông/Bà</span>
+                                    <span class="name-parent">{{wedding.code.father|upper}}</span>
+                                    <span class="name-parent">{{wedding.code.mother|upper}}</span>
+                                    <span class="address-parrent">{{wedding.code.address}}</span>
+                                </div>
+                            {%endfor%}
+                            {%for wedding in weddings%}
+                                <div class="invitation-panel-content {{wedding.code.slug}}">
+                                    <span class="inform-invitation">TRÂN TRỌNG BÁO TIN <span class="color-invitation"> LỄ {{wedding.feast|upper}} </span> CỦA CON CHÚNG TÔI</span>
+                                </div> 
+                            {%endfor%}
+                            <div class="information-main-people">
+                                {%for wedding in weddings%}
+                                    <div class="colum-4 colum-s-4 content-invitation">
+                                        <span class="name-main-people">{{wedding.code.name|upper}}</span>
+                                        <span class="index-main-people">{{wedding.code.child_index}}</span>
+                                    </div>
+                                    {% if forloop.counter0|divisibleby:2 %}                                        
+                                            <img src="{%static 'images/small_people/couple_1.png'%}" alt="">
+                                    {% endif %}
+                                {%endfor%}
+                            </div>
+                            {%for wedding in weddings%}
+                                <div class="invitation-panel-content {{wedding.code.slug}}">
+                                    <div class="address-invitation">Hôn lễ được cử hành tại <br><span class="color-invitation">{{wedding.location|upper}}</span></div><br>
+                                    <div class="time-invitation">Vào lúc <span class="color-invitation">{{wedding.time_calendar|date:"H:i"}}</span></div>
+                                    <div class="date-importal row">
+                                        <div class="date-invitation colum-3 colum-s-3">Tháng {{wedding.time_calendar|date:"m"}} </div>
+                                        <div class="day-invitation colum-4 colum-s-4">{{wedding.time_calendar|date:"d"}}</div>
+                                        <div class="date-invitation colum-3 colum-s-3"> Năm {{wedding.time_calendar|date:"Y"}}</div>
+                                    </div>
+                                    <div class="inform-invitation">Nhầm ngày <span class="color-invitation">{{wedding.time_lunar|date:"d"}}</span> 
+                                        Tháng <span class="color-invitation">{{wedding.time_lunar|date:"m"}}</span> 
+                                        Năm <span class="color-invitation">{{wedding.time_lunar|date:"Y"}}</span> Âm Lịch 
+                                    </div>
+                                </div>
+
+                            {%endfor%}
+                            <div class="wishes-invitation">
+                                SỰ HIỆN DIỆN CỦA QUÝ KHÁCH
+                            </div>
+                            <div class="wishes-invitation">
+                                LÀ NIỀM VINH HẠNH CHO GIA ĐÌNH CHÚNG TÔI!
+                            </div>
+                        </div>
+                        <img src="{% static "images/border_invitation_bottom.png" %}">
+                    </div>
+                {% endif%}
             </div>
-            <!-- Row End -->
-        </div>
-        <!-- Container End -->
-    </section>
-    <!-- section -->
+            <!-- END of CONTAINER -->
+
+        </section>
+        <!-- Section end -->
+    </div>
+    <!-- BORDER END -->
+
+
     
     <section class="wed_section_innerpage">
         <div class="containter">
             <div class="row wed_inside_map">
-                {% if invitations%} 
-                    {%for wedding in invitations%}
-                        {% if forloop.counter|divisibleby:2 %}
-                          <div class="col-md-2 hidden-sm hidden-xs text-center">   
-                            <div class="wed_story_center">
-                              <div class="wed_story_content">
-                                <div class="wed_heart_container">
-                                  <img class="wed_heart_1" src="{%static 'images/small_people/heart_3.png'%}" alt="">
-                                  <img class="wed_heart_2" src="{%static 'images/small_people/heart_2.png'%}" alt="">
-                                </div>
-                                <div class="wed_story_small_img">
-                                  <img src="{%static 'images/small_people/couple_1.png'%}" alt="">
-                                </div>
-
-                              </div>
-                            </div>
-                          </div>
-                        {%endif%}
-                        <div class="col-md-5">
+                {% if weddings%} 
+                    {%for wedding in weddings%}
+                        <div class="invitation-panel-content {{wedding.code.slug}}" style="height:500px">
                             <!-- over -->
                             <div class="wed_map_over text-center wed_wht_txt">
                                 <div class="wed_map_txt wed_icon_box">
-                                    <img class="wed_small_img" src="images/small_people/rising_heart.png" alt="">
+                                    <img class="wed_small_img" src="{%static 'images/small_people/rising_heart.png'%}" alt="">
                                     <div class="wed_icon_box_content">
                                         <h4><b>Xem bản đồ nhà {{wedding.code}}</b></h4>
                                     </div>

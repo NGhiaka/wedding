@@ -10,12 +10,17 @@ from .models import *
 admin.site.site_header = "Wedding"
 admin.site.site_title = "ADMIN MANAGE"
 admin.site.index_title = "Welcome to ADMIN"
+admin.site.login_template = "admin/login_template.html"
+admin.site.index_template = "admin/index.html"
+
+
+
 
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
     readonly_fields = ('image_tag',)
-    list_display = ('name', 'slug', 'ishusban', 'image_tag', 'short_content', 'code', 'user')
-    fields = ('name', 'ishusban','image', 'code', 'decription')
+    list_display = ('name', 'slug', 'father', 'mother', 'address', 'child_index', 'ishusban', 'image_tag', 'short_content', 'code', 'user')
+    fields = ('name', 'father', 'mother', 'address', 'child_index', 'ishusban','image', 'code', 'decription')
     ordering = ('name',)
     search_fields = ('name', 'code', 'user')
     def save_model(self, request, obj, form, change):
@@ -48,7 +53,7 @@ class GalleryAdmin(admin.ModelAdmin):
 
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
-    fields = ('title', 'images', 'short_content', 'feeling' )
+    fields = ('title', 'images', 'content', 'feeling' )
     # readonl = ('image_tag',)
     list_display = ('title', 'uploaded_at', 'image_tag', 'feeling', 'user')
     ordering = ('title',)

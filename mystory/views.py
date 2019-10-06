@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from mystory.models import *
 from mystory.forms import BlessingForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 # Create your views here.
 
@@ -42,7 +44,16 @@ def About_Him(request):
 def Stories(request):
 	menu = Menu.objects.get(link='nhat-ky')
 	musics = Music.objects.filter(menu=menu)
-	stories = Story.objects.order_by('-uploaded_at').all()[:5]
+	#pagination
+	story_list = Story.objects.order_by('-uploaded_at').all()
+	page = request.GET.get('page', 1)
+	paginator = Paginator(story_list, 5)
+	try:
+		stories = paginator.page(page)
+	except PageNotAnInteger:
+		stories = paginator.page(1)
+	except EmptyPage:
+		stories = paginator.page(paginator.num_pages)
 	context = {
 		'menu': menu,
 		'musics':musics,
@@ -53,11 +64,11 @@ def Stories(request):
 def Invitation(request):
 	menu = Menu.objects.get(link='tiec-cuoi')
 	musics = Music.objects.filter(menu=menu)
-	invitations = Wedding_Invitation.objects.all()
+	weddings = Wedding_Invitation.objects.all()
 	context = {
 		'menu': menu,
 		'musics':musics,
-		'invitations':invitations,
+		'weddings':weddings,
 	}
 	return render(request, 'wedding/invitation.html', context)
 
@@ -65,7 +76,16 @@ def Galleries(request):
 	menu = Menu.objects.get(link='khoanh-khac')
 	musics = Music.objects.filter(menu=menu)
 	galleries = Gallery.objects.order_by('-uploaded_at').all()[:10]
-	images = Image.objects.order_by('-uploaded_at').all()[:50]
+	#pagination
+	image_list = Image.objects.order_by('-uploaded_at').all()
+	page = request.GET.get('page', 1)
+	paginator = Paginator(image_list, 20)
+	try:
+		images = paginator.page(page)
+	except PageNotAnInteger:
+		images = paginator.page(1)
+	except EmptyPage:
+		images = paginator.page(paginator.num_pages)
 	context = {
 		'menu': menu,
 		'musics':musics,
@@ -83,12 +103,21 @@ def Blessings(request):
 		form = BlessingForm(request.POST)
 		if form.is_valid():
 			form.save()
-			msg = "Cảm ơn bạn đã bỏ chút thời gian để dành những lời chúc tốt đẹp dành cho cô dâu-chú rể!"
+			msg = "Cảm ơn lời chúc tốt đẹp của " + form.cleaned_data['relation'].split()[0] + "!"
 			# return redirect('/loi-chuc/')
 	form = BlessingForm()
 	menu = Menu.objects.get(link='loi-chuc')
 	musics = Music.objects.filter(menu=menu)
-	blessings = Blessing.objects.order_by('-uploaded_at').all()[:20] 
+	#pagination
+	blessings = Blessing.objects.order_by('-uploaded_at').all()
+	# page = request.GET.get('page', 1)
+	# paginator = Paginator(blessing_list, 2)
+	# try:
+	# 	blessings = paginator.page(page)
+	# except PageNotAnInteger:
+	# 	blessings = paginator.page(1)
+	# except EmptyPage:
+	# 	blessings = paginator.page(paginator.num_pages)
 	context = {
 		'menu': menu,
 		'musics':musics,
