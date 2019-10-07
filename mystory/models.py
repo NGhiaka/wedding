@@ -118,6 +118,8 @@ class Image(models.Model):
     gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE, verbose_name='Bộ sưu tập', default='')
     decription = models.CharField(max_length=500, blank = True, verbose_name='Ghi chú', default='')
     slide_show = models.BooleanField(default=1, verbose_name='Ảnh Trình Chiếu')
+    def __str__(self):
+        return '%s' % self.path_img
     class Meta:
         verbose_name = 'Hình Ảnh'
         verbose_name_plural = "Quản Lý Hình Ảnh"
