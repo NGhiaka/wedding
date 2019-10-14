@@ -8,12 +8,10 @@ from .models import *
 
 # Register your models here.
 admin.site.site_header = "Wedding"
-admin.site.site_title = "ADMIN MANAGE"
-admin.site.index_title = "Welcome to ADMIN"
+admin.site.site_title = "Quản Lý Admin"
+admin.site.index_title = "Quản Lý Admin"
 admin.site.login_template = "admin/login_template.html"
 admin.site.index_template = "admin/index.html"
-
-
 
 
 @admin.register(About)
@@ -46,14 +44,11 @@ class ImageAdmin(admin.ModelAdmin):
 # class ImageInline(admin.TabularInline):
 #     model = Image
 
-# @admin.register(Gallery)
-# class GalleryAdmin(admin.ModelAdmin):
-#     fields = ('title', 'decription' )
-#     ordering = ('title',)
-#     search_fields = ('title',)
-#     inlines = [
-#         ImageInline,
-#     ]
+@admin.register(Gallery)
+class GalleryAdmin(admin.ModelAdmin):
+    fields = ('title', 'decription' )
+    ordering = ('title',)
+    search_fields = ('title',)
 # admin.site.register(Gallery)
 # admin.site.register(Image)
 

@@ -212,7 +212,7 @@ class Menu(models.Model):
     background = CloudinaryField('menu')   
     # background = models.ImageField(upload_to = 'menu', verbose_name='Ảnh Nền', default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Thêm bởi', default='')
-    uploaded_at = models.DateTimeField(auto_now_add=True)   
+    uploaded_at = models.DateTimeField(auto_now_add=True)  
     def save(self):
         self.link = slugify(self.name)
         super(Menu, self).save()
