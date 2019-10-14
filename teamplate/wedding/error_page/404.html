@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load staticfiles%}
+
+{% block title %} Error | Không tìm thấy trang  {% endblock %}
+
+{% block content %}
+	<div class="bg-gray-color pd-404">
+        <div class="main-content">
+            <img src="{% static 'images/404.png'%}" alt="404" style="width: 100%; height: 100%;"/>  
+        </div><!-- /.main-content -->                
+    </div><!-- /.page-header --> 
+{% endblock %}

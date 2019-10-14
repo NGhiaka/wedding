@@ -66,10 +66,10 @@ class StoryAdmin(admin.ModelAdmin):
 # admin.site.register(Invitee)
 @admin.register(Invitee)
 class InviteeAdmin(admin.ModelAdmin):
-    fields = ('name', 'phone', 'address','guestof', 'ivitation', 'adherence_wedding', 'money_wedding')
-    list_display = ('name', 'phone', 'address','guestof', 'ivitation', 'adherence_wedding', 'money_wedding', 'user')
-    ordering = ('name','guestof', 'ivitation', 'adherence_wedding')
-    search_fields = ('name','phone', 'address', 'guestof', 'ivitation', 'adherence_wedding', 'money_wedding')
+    fields = ('name', 'wedding', 'phone', 'address','guestof', 'ivitation', 'adherence_wedding', 'money_wedding')
+    list_display = ('name','wedding', 'phone', 'address','guestof', 'ivitation', 'adherence_wedding', 'money_wedding', 'user')
+    ordering = ('name','guestof', 'wedding', 'ivitation', 'adherence_wedding')
+    search_fields = ('name', 'wedding', 'phone', 'address', 'guestof', 'ivitation', 'adherence_wedding', 'money_wedding')
     def save_model(self, request, obj, form, change):
         obj.user = request.user
         super().save_model(request, obj, form, change)

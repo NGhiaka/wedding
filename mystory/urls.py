@@ -1,5 +1,5 @@
 from django.conf.urls import url
- 
+
 from . import views
 app_name = "mystory"
 urlpatterns = [
@@ -12,3 +12,6 @@ urlpatterns = [
     # url(r'^nhat-ky/$', views.Journal, name='journal'),
     url(r'^loi-chuc/$', views.Blessings, name='blessing'),
 ]
+
+# handler404 = 'mystory.views.handler404'
+# handler500 = 'mystory.views.handler500'

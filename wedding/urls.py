@@ -19,6 +19,9 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+# from django.conf.urls import handler404, handler500
+
+
 urlpatterns = [
 	# url(r'^admin/', include('admin.urls')),
     # url(r'^ckeditor/', include('ckeditor_uploader.urls')),
@@ -27,4 +30,9 @@ urlpatterns = [
     url(r'^', include('mystory.urls')),
     url('djrichtextfield/', include('djrichtextfield.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'mystory.views.handler404'
+handler500 = 'mystory.views.handler500'
+
+
 

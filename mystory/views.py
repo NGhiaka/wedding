@@ -127,3 +127,9 @@ def Blessings(request):
 	}
 
 	return render(request, 'wedding/blessing.html', context)
+
+def handler404(request):
+    return render(request, 'wedding/error_page/404.html', status=404)
+
+def handler500(request):
+    return render(request, 'wedding/error_page/404.html', status=500)

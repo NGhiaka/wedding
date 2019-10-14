@@ -171,7 +171,7 @@ class Blessing(models.Model):
     name = models.CharField(max_length=100, blank = True, verbose_name='Tên khác mời', default='')
     relation = models.CharField(max_length=100, null=True, blank=True, verbose_name='Mối quan hệ')
     blessing = models.TextField(max_length=2000, blank = True, verbose_name='Lời chúc', default='')
-    uploaded_at = models.DateTimeField(auto_now_add=True)   
+    uploaded_at = models.DateTimeField(auto_now_add=True)  
 
     class Meta:
         verbose_name = 'Lời Chúc'
@@ -183,6 +183,7 @@ class Invitee(models.Model):
     """Danh sách khách mời
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    wedding = models.ForeignKey(Wedding_Invitation, on_delete=models.CASCADE, verbose_name='Mời ở đám', default='') #khách của CD hay CR
     guestof = models.ForeignKey(About, on_delete=models.CASCADE, verbose_name='Khách của', default='') #khách của CD hay CR
     name = models.CharField(max_length=100, verbose_name='Tên khách mời', default='') #Tên khách
     phone = models.CharField(validators=[phone_regex], max_length=13, blank=True, verbose_name='Số điện thoại', default='') # Số điện thoại
