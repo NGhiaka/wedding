@@ -40,6 +40,7 @@ class ImageAdmin(admin.ModelAdmin):
     fields = ('gallery', 'path_img', 'slide_show', 'decription' )
     ordering = ('gallery', 'path_img', 'slide_show', 'decription')
     search_fields = ('gallery__title', 'decription')
+    list_per_page = 15
 
 # class ImageInline(admin.TabularInline):
 #     model = Image
@@ -49,6 +50,7 @@ class GalleryAdmin(admin.ModelAdmin):
     fields = ('title', 'decription' )
     ordering = ('title',)
     search_fields = ('title',)
+    list_per_page = 15
 # admin.site.register(Gallery)
 # admin.site.register(Image)
 
@@ -59,6 +61,7 @@ class StoryAdmin(admin.ModelAdmin):
     list_display = ('title', 'uploaded_at', 'image_tag', 'feeling', 'user')
     ordering = ('title',)
     search_fields = ('title',)
+    list_per_page = 15
     def save_model(self, request, obj, form, change):
         obj.user = request.user
         super().save_model(request, obj, form, change)
@@ -70,6 +73,7 @@ class InviteeAdmin(admin.ModelAdmin):
     list_display = ('name','wedding', 'phone', 'address','guestof', 'ivitation', 'adherence_wedding', 'money_wedding', 'user')
     ordering = ('name','guestof', 'wedding', 'ivitation', 'adherence_wedding')
     search_fields = ('name', 'wedding', 'phone', 'address', 'guestof', 'ivitation', 'adherence_wedding', 'money_wedding')
+    list_per_page = 15
     def save_model(self, request, obj, form, change):
         obj.user = request.user
         super().save_model(request, obj, form, change)
@@ -92,6 +96,7 @@ class MusicAdmin(admin.ModelAdmin):
     # readonly_fields = ('image_tag',)
     ordering = ('name', 'user')
     search_fields = ('name', 'slug', 'menu__name')
+    list_per_page = 15
     def save_model(self, request, obj, form, change):
         obj.user = request.user
         super().save_model(request, obj, form, change)
@@ -102,5 +107,6 @@ class BlessingAdmin(admin.ModelAdmin):
     readonly_fields = ('name', 'relation', 'blessing')
     ordering = ('name', 'relation', 'blessing')
     search_fields = ('name','relation', 'blessing')
+    list_per_page = 15
 # admin.site.register(Blessing)
 
