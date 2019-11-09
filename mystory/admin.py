@@ -17,9 +17,9 @@ admin.site.index_template = "admin/index.html"
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
     # readonly_fields = ('image_tag',)
-    list_display = ('name', 'slug', 'father', 'mother', 'address', 'child_index', 'ishusban', 'image_tag', 'short_content', 'code', 'user')
+    list_display = ('id', 'name', 'slug', 'father', 'mother', 'address', 'child_index', 'ishusban', 'image_tag', 'short_content', 'code', 'user')
     fields = ('name', 'father', 'mother', 'address', 'child_index', 'ishusban','image', 'code', 'decription')
-    ordering = ('name',)
+    ordering = ('id', 'name',)
     search_fields = ('name', 'code', 'name', 'slug', 'father', 'mother', 'address', 'decription')
     def save_model(self, request, obj, form, change):
         obj.user = request.user
@@ -29,16 +29,16 @@ class AboutAdmin(admin.ModelAdmin):
 # admin.site.register(Wedding_Invitation)
 @admin.register(Wedding_Invitation)
 class Wedding_InvitationAdmin(admin.ModelAdmin):
-    list_display = ('code', 'location','short_content', 'feast', 'time_calendar', 'time_lunar')
+    list_display = ('id', 'code', 'location','short_content', 'feast', 'time_calendar', 'time_lunar')
     fields = ('code', 'location', 'gmap', 'feast', 'time_calendar', 'time_lunar')
-    ordering = ('code', 'location', 'feast', 'time_calendar', 'time_lunar')
+    ordering = ('id', 'code', 'location', 'feast', 'time_calendar', 'time_lunar')
     search_fields = ('code___name', 'location', 'feast', 'time_calendar', 'time_lunar')
     
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ('gallery', 'path_img', 'slide_show', 'decription')
+    list_display = ('id', 'gallery', 'path_img', 'slide_show', 'decription')
     fields = ('gallery', 'path_img', 'slide_show', 'decription' )
-    ordering = ('gallery', 'path_img', 'slide_show', 'decription')
+    ordering = ('id', 'gallery', 'path_img', 'slide_show', 'decription')
     search_fields = ('gallery__title', 'decription')
     list_per_page = 15
 
@@ -48,7 +48,7 @@ class ImageAdmin(admin.ModelAdmin):
 @admin.register(Gallery)
 class GalleryAdmin(admin.ModelAdmin):
     fields = ('title', 'decription' )
-    ordering = ('title',)
+    ordering = ('id', 'title',)
     search_fields = ('title',)
     list_per_page = 15
 # admin.site.register(Gallery)
@@ -58,7 +58,7 @@ class GalleryAdmin(admin.ModelAdmin):
 class StoryAdmin(admin.ModelAdmin):
     fields = ('title', 'images', 'content', 'feeling' )
     # readonl = ('image_tag',)
-    list_display = ('title', 'uploaded_at', 'image_tag', 'feeling', 'user')
+    list_display = ('id', 'title', 'uploaded_at', 'image_tag', 'feeling', 'user')
     ordering = ('title',)
     search_fields = ('title',)
     list_per_page = 15
@@ -70,8 +70,8 @@ class StoryAdmin(admin.ModelAdmin):
 @admin.register(Invitee)
 class InviteeAdmin(admin.ModelAdmin):
     fields = ('name', 'wedding', 'phone', 'address','guestof', 'ivitation', 'adherence_wedding', 'money_wedding')
-    list_display = ('name','wedding', 'phone', 'address','guestof', 'ivitation', 'adherence_wedding', 'money_wedding', 'user')
-    ordering = ('name','guestof', 'wedding', 'ivitation', 'adherence_wedding')
+    list_display = ('id', 'name','wedding', 'phone', 'address','guestof', 'ivitation', 'adherence_wedding', 'money_wedding', 'user')
+    ordering = ('id', 'name','guestof', 'wedding', 'ivitation', 'adherence_wedding')
     search_fields = ('name', 'wedding', 'phone', 'address', 'guestof', 'ivitation', 'adherence_wedding', 'money_wedding')
     list_per_page = 15
     def save_model(self, request, obj, form, change):
@@ -80,8 +80,8 @@ class InviteeAdmin(admin.ModelAdmin):
 
 @admin.register(Menu)
 class MenuAdmin(admin.ModelAdmin):
-    list_display = ('name', 'link', 'image_tag', 'uploaded_at', 'user')
-    fields = ('name', 'link', 'background')
+    list_display = ('id', 'name', 'link', 'image_tag', 'uploaded_at', 'user')
+    fields = ('id', 'name', 'link', 'background')
     readonly_fields = ('image_tag',)
     ordering = ('name','link', 'user')
     search_fields = ('name',)
@@ -91,10 +91,10 @@ class MenuAdmin(admin.ModelAdmin):
 
 @admin.register(Music)
 class MusicAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'short_link', 'menu', 'play_show', 'uploaded_at', 'user')
+    list_display = ('id', 'name', 'slug', 'short_link', 'menu', 'play_show', 'uploaded_at', 'user')
     fields = ('name', 'link', 'play_show', 'menu')
     # readonly_fields = ('image_tag',)
-    ordering = ('name', 'user')
+    ordering = ('id', 'name', 'user')
     search_fields = ('name', 'slug', 'menu__name')
     list_per_page = 15
     def save_model(self, request, obj, form, change):
@@ -103,9 +103,9 @@ class MusicAdmin(admin.ModelAdmin):
 
 @admin.register(Blessing)
 class BlessingAdmin(admin.ModelAdmin):
-    list_display = ('name', 'relation', 'blessing')
+    list_display = ('id', 'name', 'relation', 'blessing')
     readonly_fields = ('name', 'relation', 'blessing')
-    ordering = ('name', 'relation', 'blessing')
+    ordering = ('id', 'name', 'relation', 'blessing')
     search_fields = ('name','relation', 'blessing')
     list_per_page = 15
 # admin.site.register(Blessing)
